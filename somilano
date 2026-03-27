@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SO Milano — Бренд-платформа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0f0f0d;
+    --off-white: #f7f5f0;
+    --warm-gray: #8c8880;
+    --light-gray: #e8e5df;
+    --accent: #b8894a;
+    --accent-light: #f0e8d8;
+    --text: #1a1916;
+    --text-secondary: #6b6860;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─────────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6vw;
+    transition: background 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(15,15,13,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--off-white);
+  }
+  .nav-tag {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.4);
+  }
+
+  /* ─── HERO ────────────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 6vw 8vh;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(184,137,74,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(184,137,74,0.06) 0%, transparent 50%);
+  }
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(72px, 14vw, 160px);
+    font-weight: 300;
+    line-height: 0.92;
+    color: var(--off-white);
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    margin-top: 32px;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(247,245,240,0.5);
+    letter-spacing: 0.01em;
+    max-width: 420px;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.8s ease 0.9s forwards;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    right: 6vw;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.3);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.4s forwards;
+  }
+  .hero-scroll-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(247,245,240,0.2);
+  }
+
+  /* ─── REVEAL ──────────────────────────────────────────────────────────── */
+  .section {
+    padding: 120px 6vw;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── SECTION LABELS ──────────────────────────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 48px;
+  }
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 48px;
+  }
+
+  /* ─── ESSENCE ─────────────────────────────────────────────────────────── */
+  .essence {
+    background: var(--black);
+    color: var(--off-white);
+  }
+  .essence .section-label { color: var(--accent); }
+  .essence .section-title { color: var(--off-white); }
+  .essence .divider { background: rgba(184,137,74,0.4); }
+
+  .essence-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--off-white);
+    max-width: 800px;
+    margin-bottom: 48px;
+  }
+  .essence-quote span { color: var(--accent); }
+
+  .essence-body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(247,245,240,0.6);
+    max-width: 620px;
+    margin-bottom: 20px;
+  }
+
+  /* ─── MISSION ─────────────────────────────────────────────────────────── */
+  .mission { background: var(--off-white); }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--light-gray);
+    border: 1px solid var(--light-gray);
+    margin-top: 48px;
+  }
+  .mission-cell {
+    background: var(--off-white);
+    padding: 40px 36px;
+  }
+  .mission-cell-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+  .mission-cell-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .mission-cell-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  /* ─── VALUES ──────────────────────────────────────────────────────────── */
+  .values { background: var(--black); }
+  .values .section-label { color: var(--accent); }
+  .values .section-title { color: var(--off-white); }
+
+  .values-list { margin-top: 16px; border-top: 1px solid rgba(247,245,240,0.08); }
+
+  .value-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(247,245,240,0.08);
+    cursor: default;
+    transition: background 0.3s ease;
+  }
+  .value-item:hover {
+    background: rgba(184,137,74,0.04);
+    margin: 0 -6vw;
+    padding: 40px 6vw;
+  }
+  .value-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0.6;
+    padding-top: 4px;
+  }
+  .value-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 400;
+    color: var(--off-white);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .value-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(247,245,240,0.5);
+    max-width: 600px;
+  }
+
+  /* ─── POSITIONING ─────────────────────────────────────────────────────── */
+  .positioning { background: var(--off-white); }
+
+  .pos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+    background: var(--light-gray);
+  }
+  .pos-col {
+    background: var(--off-white);
+    padding: 40px 36px;
+  }
+  .pos-col-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .pos-col.no .pos-col-title { color: var(--text-secondary); }
+  .pos-col.yes .pos-col-title { color: var(--accent); }
+
+  .pos-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .pos-item svg { flex-shrink: 0; margin-top: 2px; }
+  .pos-col.yes .pos-item { color: var(--text); }
+
+  /* ─── AUDIENCE ────────────────────────────────────────────────────────── */
+  .audience { background: var(--black); }
+  .audience .section-label { color: var(--accent); }
+  .audience .section-title { color: var(--off-white); }
+
+  .audience-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(247,245,240,0.06);
+    margin-top: 48px;
+  }
+  .audience-card {
+    background: #161613;
+    padding: 36px 28px;
+  }
+  .audience-card-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+  .audience-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--off-white);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .audience-card-text {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(247,245,240,0.45);
+  }
+
+  /* ─── TONE ────────────────────────────────────────────────────────────── */
+  .tone { background: var(--off-white); }
+
+  .tone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+    background: var(--light-gray);
+  }
+  .tone-col {
+    background: var(--off-white);
+    padding: 40px 36px;
+  }
+  .tone-col-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+  }
+  .tone-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-secondary);
+  }
+  .tone-mark-yes { color: var(--accent); font-size: 14px; flex-shrink: 0; }
+  .tone-mark-no  { color: #c0bbb5;      font-size: 14px; flex-shrink: 0; }
+
+  .tone-example {
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .tone-example::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+  .tone-example-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .tone-example-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.5;
+  }
+
+  /* ─── STEPS ───────────────────────────────────────────────────────────── */
+  .steps { background: var(--black); }
+  .steps .section-label { color: var(--accent); }
+  .steps .section-title { color: var(--off-white); }
+
+  .steps-list { margin-top: 16px; border-top: 1px solid rgba(247,245,240,0.08); }
+  .step-item {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(247,245,240,0.08);
+  }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+  .step-text {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(247,245,240,0.75);
+  }
+  .step-who {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(247,245,240,0.3);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────────────────────────── */
+  footer {
+    background: var(--black);
+    padding: 40px 6vw;
+    border-top: 1px solid rgba(247,245,240,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: rgba(247,245,240,0.4);
+  }
+  .footer-meta {
+    font-size: 12px;
+    color: rgba(247,245,240,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── ANIMATIONS ──────────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .section { padding: 80px 5vw; }
+    .mission-grid, .pos-grid, .tone-grid { grid-template-columns: 1fr; }
+    .audience-cards { grid-template-columns: 1fr; }
+    .step-item { grid-template-columns: 28px 1fr; gap: 16px; }
+    .step-who { display: none; }
+    .hero { padding: 0 5vw 7vh; }
+    .tone-example { padding: 28px 24px; }
+    .value-item:hover { margin: 0; padding: 40px 0; }
+    nav { padding: 16px 5vw; }
+  }
+  @media (max-width: 480px) {
+    .mission-cell, .pos-col, .tone-col, .audience-card { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">S·O</div>
+  <div class="nav-tag">Бренд-платформа · Драфт 1.0</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-label">Milano · 2026</div>
+  <h1 class="hero-title">SO<br><em>Milano</em></h1>
+  <p class="hero-sub">Первый драфт бренд-платформы. Для обсуждения с командой.</p>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Листать
+  </div>
+</section>
+
+<!-- 01 ESSENCE -->
+<section class="section essence" id="essence">
+  <div class="section-label">Блок 01 — Суть бренда</div>
+  <h2 class="section-title">Суть</h2>
+  <div class="divider"></div>
+  <p class="essence-quote">
+    «Место, куда хочется вернуться.<br>
+    Днём — <span>за едой</span>.<br>
+    Вечером — <span>за атмосферой</span>.»
+  </p>
+  <p class="essence-body">SO Milano — городской ресторан с вечерней lounge-атмосферой. Место, где сильная кухня существует рядом с кальяном — не как уступка, а как полноправная часть опыта.</p>
+  <p class="essence-body">Днём это ресторан для тех, кто живёт и работает рядом. Вечером пространство меняет ритм: становится темнее, теплее, медленнее.</p>
+  <p class="essence-body" style="color: rgba(247,245,240,0.3); font-style: italic; margin-top: 24px;">SO — это не аббревиатура и не просто буквы. Это интонация. Уверенная, короткая, запоминающаяся. Такая, которую легко сказать на любом языке.</p>
+</section>
+
+<!-- 02 MISSION -->
+<section class="section mission" id="mission">
+  <div class="section-label">Блок 02 — Миссия</div>
+  <h2 class="section-title">Миссия</h2>
+  <div class="divider"></div>
+  <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(20px,3vw,32px); font-weight:300; font-style:italic; line-height:1.4; color:var(--text); max-width:720px;">
+    «Создать в Милане место, где еда и атмосфера равны по значимости.»
+  </p>
+  <div class="mission-grid">
+    <div class="mission-cell">
+      <div class="mission-cell-num">01</div>
+      <div class="mission-cell-title">Незанятая ниша</div>
+      <div class="mission-cell-text">Большинство кальянных мест в Милане — арабская эстетика или просто «покурить». SO идёт другим путём: полноценный опыт, где еда, общение и атмосфера равны.</div>
+    </div>
+    <div class="mission-cell">
+      <div class="mission-cell-num">02</div>
+      <div class="mission-cell-title">Формирующийся рынок</div>
+      <div class="mission-cell-text">Культура кальяна в Милане только складывается. У SO есть редкая возможность задать новый образ такого места — не подстраиваться, а формировать.</div>
+    </div>
+    <div class="mission-cell">
+      <div class="mission-cell-num">03</div>
+      <div class="mission-cell-title">Ресторан прежде всего</div>
+      <div class="mission-cell-text">Кухня — главное конкурентное преимущество. Это нужно говорить вслух и ставить в центр коммуникации. Кальян — часть опыта, а не вся идентичность.</div>
+    </div>
+    <div class="mission-cell">
+      <div class="mission-cell-num">04</div>
+      <div class="mission-cell-title">Масштаб через смысл</div>
+      <div class="mission-cell-text">Milano сегодня — первая точка. Милан, Рим, другие города. Чтобы масштаб работал, у бренда должен быть характер — не просто визуал.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 VALUES -->
+<section class="section values" id="values">
+  <div class="section-label">Блок 03 — Ценности</div>
+  <h2 class="section-title">Ценности</h2>
+  <div class="values-list">
+    <div class="value-item">
+      <div class="value-num">01</div>
+      <div>
+        <div class="value-title">Еда — это серьёзно</div>
+        <div class="value-text">У нас настоящая кухня. Не закуски к кальяну, а полноценные блюда, приготовленные с вниманием. Это то, чем мы отличаемся от большинства мест в городе — и об этом нужно говорить вслух.</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">02</div>
+      <div>
+        <div class="value-title">Атмосфера — это не декор</div>
+        <div class="value-text">Ощущение места важнее его стиля. Тепло, фактура, приглушённый свет вечером, живой разговор. Не лофт, не арабская кальянная, не клуб. Что-то своё.</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">03</div>
+      <div>
+        <div class="value-title">Открытость без заборов</div>
+        <div class="value-text">К нам приходят очень разные люди: местные, туристы, экспаты. SO — не закрытый клуб и не нишевое место. Мы рады всем, кто ценит качество.</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">04</div>
+      <div>
+        <div class="value-title">Масштаб через смысл</div>
+        <div class="value-text">SO Milano — первая точка в истории, которая станет больше. Платформа строится с расчётом на другие города. Характер важнее визуала.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 POSITIONING -->
+<section class="section positioning" id="positioning">
+  <div class="section-label">Блок 04 — Позиционирование</div>
+  <h2 class="section-title">Где мы на карте</h2>
+  <div class="divider"></div>
+  <p style="font-size:15px; font-weight:300; line-height:1.75; color:var(--text-secondary); max-width:600px;">
+    SO Milano — не кальянная с кухней и не ресторан, который пытается быть модным. Это городское место притяжения, где гость выбирает сам: пришёл на обед — получи обед. Пришёл вечером с компанией — получи атмосферу, кальян и еду одновременно.
+  </p>
+  <div class="pos-grid">
+    <div class="pos-col no">
+      <div class="pos-col-title">Чем мы не являемся</div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+        Арабская / восточная кальянная
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+        Лофт с кирпичной стеной
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+        Клуб / ночное заведение
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+        «Место только покурить»
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+        Пафосный fine dining
+      </div>
+    </div>
+    <div class="pos-col yes">
+      <div class="pos-col-title">Чем мы являемся</div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
+        Ресторан с вечерней lounge-атмосферой
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
+        Место для местных и туристов одновременно
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
+        Тёплое, фактурное, живое пространство
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
+        Сильная кухня как главное преимущество
+      </div>
+      <div class="pos-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
+        Бренд, готовый к масштабированию
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 AUDIENCE -->
+<section class="section audience" id="audience">
+  <div class="section-label">Блок 05 — Аудитория</div>
+  <h2 class="section-title">Три портрета гостя</h2>
+  <div class="audience-cards">
+    <div class="audience-card">
+      <div class="audience-card-icon">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="13" width="26" height="21" stroke="#f0e8d8" stroke-width="1.4"/>
+          <path d="M2 13l16-11 16 11" stroke="#f0e8d8" stroke-width="1.4" fill="none"/>
+          <rect x="14" y="22" width="8" height="12" stroke="#f0e8d8" stroke-width="1.2"/>
+          <rect x="7" y="17" width="5" height="4" stroke="#f0e8d8" stroke-width="1.1"/>
+          <rect x="24" y="17" width="5" height="4" stroke="#f0e8d8" stroke-width="1.1"/>
+        </svg>
+      </div>
+      <div class="audience-card-title">Местный житель / экспат</div>
+      <div class="audience-card-text">Живёт в районе или в Милане уже не первый год. Знает нас как «лучший кальян», но постепенно открывает кухню. Приходит регулярно — в том числе просто поужинать. Чувствует себя «у своих».</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-card-icon">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="15" stroke="#f0e8d8" stroke-width="1.4"/>
+          <path d="M3 18h30M18 3c-4 5-6 9-6 15s2 10 6 15M18 3c4 5 6 9 6 15s-2 10-6 15" stroke="#f0e8d8" stroke-width="1.2" fill="none"/>
+        </svg>
+      </div>
+      <div class="audience-card-title">Турист / путешественник</div>
+      <div class="audience-card-text">Находит нас на карте или по рекомендации. Ищет место, где можно и поесть, и провести вечер с настроением. Часто из СНГ, но не только. Для него важны первое впечатление и визуал.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-card-icon">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="18,3 22,13 33,14 25,22 27,33 18,28 9,33 11,22 3,14 14,13" stroke="#f0e8d8" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="audience-card-title">Продвинутый гость кальяна</div>
+      <div class="audience-card-text">Разбирается в кальянах, ценит качество. Не ищет арабскую историю — хочет современный подход и хороший продукт. Именно такие гости рекомендуют нас дальше и возвращаются снова.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 TONE -->
+<section class="section tone" id="tone">
+  <div class="section-label">Блок 06 — Голос бренда</div>
+  <h2 class="section-title">Тональность</h2>
+  <div class="divider"></div>
+  <p style="font-size:15px; font-weight:300; line-height:1.75; color:var(--text-secondary); max-width:560px; margin-bottom:0;">
+    Как бренд говорит — это часть его личности. SO Milano говорит уверенно, но без пафоса. Тепло, но не слащаво. С характером, но доступно.
+  </p>
+  <div class="tone-grid">
+    <div class="tone-col">
+      <div class="tone-col-title">SO говорит</div>
+      <div class="tone-item"><span class="tone-mark-yes">✓</span> Конкретно и ёмко</div>
+      <div class="tone-item"><span class="tone-mark-yes">✓</span> С теплом, не с дистанцией</div>
+      <div class="tone-item"><span class="tone-mark-yes">✓</span> Про еду — с гордостью</div>
+      <div class="tone-item"><span class="tone-mark-yes">✓</span> Про атмосферу — через детали</div>
+      <div class="tone-item"><span class="tone-mark-yes">✓</span> На нескольких языках органично</div>
+    </div>
+    <div class="tone-col">
+      <div class="tone-col-title">SO не говорит</div>
+      <div class="tone-item"><span class="tone-mark-no">✕</span> Избыточными эпитетами</div>
+      <div class="tone-item"><span class="tone-mark-no">✕</span> Клубным языком</div>
+      <div class="tone-item"><span class="tone-mark-no">✕</span> С акцентом только на кальяне</div>
+      <div class="tone-item"><span class="tone-mark-no">✕</span> Слишком формально</div>
+      <div class="tone-item"><span class="tone-mark-no">✕</span> С восточными отсылками в тексте</div>
+    </div>
+  </div>
+  <div class="tone-example">
+    <div class="tone-example-label">Пример интонации — Instagram</div>
+    <div class="tone-example-text">«Сегодня из кухни: тартар из говядины с трюфельным маслом и хрустящим луком-шалот. Пока есть — берите. Вечером откроем второй зал.»</div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section class="section steps" id="steps">
+  <div class="section-label">Что дальше</div>
+  <h2 class="section-title">Следующие шаги</h2>
+  <div class="steps-list">
+    <div class="step-item">
+      <div class="step-num">01</div>
+      <div class="step-text">Финальная правка бренд-платформы по итогам обсуждения</div>
+      <div class="step-who">Команда + клиент</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">02</div>
+      <div class="step-text">Разработка визуальной системы: цвета, шрифты, носители</div>
+      <div class="step-who">Дизайнер</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">03</div>
+      <div class="step-text">Оценка логотипа SO через призму утверждённой платформы</div>
+      <div class="step-who">Дизайнер</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">04</div>
+      <div class="step-text">Интерьерные принципы на основе бренд-платформы</div>
+      <div class="step-who">Архитектор + Дизайнер</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">05</div>
+      <div class="step-text">Разработка брендбука и шаблонов для коммуникаций</div>
+      <div class="step-who">Дизайнер</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">S·O Milano</div>
+  <div class="footer-meta">Бренд-платформа · Драфт 1.0 · 2026</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
