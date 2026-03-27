@@ -11,7 +11,6 @@
   :root {
     --black: #0f0f0d;
     --off-white: #f7f5f0;
-    --warm-gray: #8c8880;
     --light-gray: #e8e5df;
     --accent: #b8894a;
     --accent-light: #f0e8d8;
@@ -19,7 +18,7 @@
     --text-secondary: #6b6860;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
@@ -30,7 +29,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ─── NAV ─────────────────────────────────────────────────────────────── */
+  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -60,7 +59,7 @@
     color: rgba(247,245,240,0.4);
   }
 
-  /* ─── HERO ────────────────────────────────────────────────────────────── */
+  /* HERO */
   .hero {
     min-height: 100svh;
     display: flex;
@@ -79,7 +78,6 @@
       radial-gradient(ellipse 40% 60% at 20% 80%, rgba(184,137,74,0.06) 0%, transparent 50%);
   }
   .hero-label {
-    font-family: 'DM Sans', sans-serif;
     font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.2em;
@@ -110,7 +108,6 @@
     font-size: 15px;
     font-weight: 300;
     color: rgba(247,245,240,0.5);
-    letter-spacing: 0.01em;
     max-width: 420px;
     line-height: 1.6;
     opacity: 0;
@@ -137,19 +134,15 @@
     background: rgba(247,245,240,0.2);
   }
 
-  /* ─── REVEAL ──────────────────────────────────────────────────────────── */
+  /* SECTIONS */
   .section {
     padding: 120px 6vw;
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .section.visible { opacity: 1; transform: translateY(0); }
 
-  /* ─── SECTION LABELS ──────────────────────────────────────────────────── */
   .section-label {
     font-size: 11px;
     font-weight: 400;
@@ -160,7 +153,7 @@
   }
   .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(40px, 6vw, 72px);
+    font-size: clamp(42px, 6vw, 74px);
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -174,16 +167,28 @@
     margin-bottom: 48px;
   }
 
-  /* ─── ESSENCE ─────────────────────────────────────────────────────────── */
-  .essence {
+  /* DARK SECTIONS */
+  .dark {
     background: var(--black);
     color: var(--off-white);
   }
-  .essence .section-label { color: var(--accent); }
-  .essence .section-title { color: var(--off-white); }
-  .essence .divider { background: rgba(184,137,74,0.4); }
+  .dark .section-label { color: var(--accent); }
+  .dark .section-title { color: var(--off-white); }
+  .dark .divider { background: rgba(184,137,74,0.4); }
 
-  .essence-quote {
+  /* BODY TEXT */
+  .body-text {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin-bottom: 20px;
+  }
+  .dark .body-text { color: rgba(247,245,240,0.55); }
+
+  /* PULL QUOTE */
+  .pull-quote {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(24px, 4vw, 42px);
     font-weight: 300;
@@ -193,42 +198,46 @@
     max-width: 800px;
     margin-bottom: 48px;
   }
-  .essence-quote span { color: var(--accent); }
+  .pull-quote span { color: var(--accent); }
 
-  .essence-body {
-    font-size: 16px;
+  /* ESSENCE TAGLINE */
+  .essence-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4.5vw, 52px);
     font-weight: 300;
-    line-height: 1.75;
-    color: rgba(247,245,240,0.6);
-    max-width: 620px;
-    margin-bottom: 20px;
+    line-height: 1.15;
+    color: var(--off-white);
+    max-width: 880px;
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
   }
+  .essence-tagline em { font-style: italic; color: var(--accent); }
 
-  /* ─── MISSION ─────────────────────────────────────────────────────────── */
-  .mission { background: var(--off-white); }
-
-  .mission-grid {
+  /* GRID 2 */
+  .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2px;
     background: var(--light-gray);
-    border: 1px solid var(--light-gray);
     margin-top: 48px;
   }
-  .mission-cell {
+  .grid-cell {
     background: var(--off-white);
     padding: 40px 36px;
   }
-  .mission-cell-num {
+  .dark .grid-2 { background: rgba(247,245,240,0.08); }
+  .dark .grid-cell { background: #161613; }
+
+  .grid-cell-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 48px;
     font-weight: 300;
     color: var(--accent);
     line-height: 1;
     margin-bottom: 16px;
-    opacity: 0.5;
+    opacity: 0.45;
   }
-  .mission-cell-title {
+  .grid-cell-title {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -236,20 +245,17 @@
     color: var(--text);
     margin-bottom: 12px;
   }
-  .mission-cell-text {
-    font-size: 14px;
+  .dark .grid-cell-title { color: var(--off-white); }
+  .grid-cell-text {
+    font-size: 15px;
     font-weight: 300;
-    line-height: 1.7;
+    line-height: 1.75;
     color: var(--text-secondary);
   }
+  .dark .grid-cell-text { color: rgba(247,245,240,0.45); }
 
-  /* ─── VALUES ──────────────────────────────────────────────────────────── */
-  .values { background: var(--black); }
-  .values .section-label { color: var(--accent); }
-  .values .section-title { color: var(--off-white); }
-
+  /* VALUES LIST */
   .values-list { margin-top: 16px; border-top: 1px solid rgba(247,245,240,0.08); }
-
   .value-item {
     display: grid;
     grid-template-columns: 48px 1fr;
@@ -257,7 +263,6 @@
     align-items: start;
     padding: 40px 0;
     border-bottom: 1px solid rgba(247,245,240,0.08);
-    cursor: default;
     transition: background 0.3s ease;
   }
   .value-item:hover {
@@ -275,23 +280,51 @@
   }
   .value-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(22px, 3vw, 30px);
+    font-size: clamp(24px, 3vw, 32px);
     font-weight: 400;
     color: var(--off-white);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     line-height: 1.2;
   }
   .value-text {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     line-height: 1.75;
     color: rgba(247,245,240,0.5);
     max-width: 600px;
   }
 
-  /* ─── POSITIONING ─────────────────────────────────────────────────────── */
-  .positioning { background: var(--off-white); }
+  /* PRINCIPLES LIST */
+  .principles-list {
+    margin-top: 48px;
+    border-top: 1px solid var(--light-gray);
+  }
+  .principle-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--light-gray);
+    align-items: start;
+  }
+  .principle-arrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+  .principle-text {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .principle-text strong {
+    font-weight: 500;
+    color: var(--text);
+  }
 
+  /* POS GRID */
   .pos-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -299,10 +332,7 @@
     margin-top: 48px;
     background: var(--light-gray);
   }
-  .pos-col {
-    background: var(--off-white);
-    padding: 40px 36px;
-  }
+  .pos-col { background: var(--off-white); padding: 40px 36px; }
   .pos-col-title {
     font-size: 12px;
     font-weight: 500;
@@ -312,25 +342,20 @@
   }
   .pos-col.no .pos-col-title { color: var(--text-secondary); }
   .pos-col.yes .pos-col-title { color: var(--accent); }
-
   .pos-item {
     display: flex;
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 14px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     line-height: 1.5;
     color: var(--text-secondary);
   }
-  .pos-item svg { flex-shrink: 0; margin-top: 2px; }
+  .pos-item svg { flex-shrink: 0; margin-top: 3px; }
   .pos-col.yes .pos-item { color: var(--text); }
 
-  /* ─── AUDIENCE ────────────────────────────────────────────────────────── */
-  .audience { background: var(--black); }
-  .audience .section-label { color: var(--accent); }
-  .audience .section-title { color: var(--off-white); }
-
+  /* AUDIENCE */
   .audience-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -338,34 +363,39 @@
     background: rgba(247,245,240,0.06);
     margin-top: 48px;
   }
-  .audience-card {
-    background: #161613;
-    padding: 36px 28px;
-  }
+  .audience-card { background: #161613; padding: 36px 28px; }
   .audience-card-icon {
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
     margin-bottom: 20px;
     opacity: 0.6;
   }
+  .audience-card-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(184,137,74,0.35);
+    padding: 3px 10px;
+    margin-bottom: 14px;
+  }
   .audience-card-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 400;
     color: var(--off-white);
     margin-bottom: 14px;
     line-height: 1.2;
   }
   .audience-card-text {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 300;
     line-height: 1.7;
     color: rgba(247,245,240,0.45);
   }
 
-  /* ─── TONE ────────────────────────────────────────────────────────────── */
-  .tone { background: var(--off-white); }
-
+  /* TONE */
   .tone-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -373,10 +403,7 @@
     margin-top: 48px;
     background: var(--light-gray);
   }
-  .tone-col {
-    background: var(--off-white);
-    padding: 40px 36px;
-  }
+  .tone-col { background: var(--off-white); padding: 40px 36px; }
   .tone-col-title {
     font-size: 12px;
     font-weight: 500;
@@ -390,12 +417,12 @@
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 12px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     color: var(--text-secondary);
   }
-  .tone-mark-yes { color: var(--accent); font-size: 14px; flex-shrink: 0; }
-  .tone-mark-no  { color: #c0bbb5;      font-size: 14px; flex-shrink: 0; }
+  .tone-mark-yes { color: var(--accent); flex-shrink: 0; }
+  .tone-mark-no  { color: #c0bbb5; flex-shrink: 0; }
 
   .tone-example {
     margin-top: 60px;
@@ -427,11 +454,31 @@
     line-height: 1.5;
   }
 
-  /* ─── STEPS ───────────────────────────────────────────────────────────── */
-  .steps { background: var(--black); }
-  .steps .section-label { color: var(--accent); }
-  .steps .section-title { color: var(--off-white); }
+  /* BRAND ESSENCE BOX */
+  .essence-box {
+    margin-top: 48px;
+    padding: 48px;
+    background: rgba(184,137,74,0.06);
+    border: 1px solid rgba(184,137,74,0.2);
+    text-align: center;
+  }
+  .essence-box-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .essence-box-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 36px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.3;
+  }
 
+  /* STEPS */
   .steps-list { margin-top: 16px; border-top: 1px solid rgba(247,245,240,0.08); }
   .step-item {
     display: grid;
@@ -448,7 +495,7 @@
     opacity: 0.6;
   }
   .step-text {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 300;
     color: rgba(247,245,240,0.75);
   }
@@ -460,7 +507,7 @@
     white-space: nowrap;
   }
 
-  /* ─── FOOTER ──────────────────────────────────────────────────────────── */
+  /* FOOTER */
   footer {
     background: var(--black);
     padding: 40px 6vw;
@@ -484,192 +531,263 @@
     letter-spacing: 0.05em;
   }
 
-  /* ─── ANIMATIONS ──────────────────────────────────────────────────────── */
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ─── RESPONSIVE ──────────────────────────────────────────────────────── */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     .section { padding: 80px 5vw; }
-    .mission-grid, .pos-grid, .tone-grid { grid-template-columns: 1fr; }
+    .grid-2, .pos-grid, .tone-grid { grid-template-columns: 1fr; }
     .audience-cards { grid-template-columns: 1fr; }
     .step-item { grid-template-columns: 28px 1fr; gap: 16px; }
     .step-who { display: none; }
     .hero { padding: 0 5vw 7vh; }
     .tone-example { padding: 28px 24px; }
     .value-item:hover { margin: 0; padding: 40px 0; }
+    .essence-box { padding: 32px 24px; }
     nav { padding: 16px 5vw; }
   }
   @media (max-width: 480px) {
-    .mission-cell, .pos-col, .tone-col, .audience-card { padding: 28px 22px; }
+    .grid-cell, .pos-col, .tone-col, .audience-card { padding: 28px 22px; }
   }
 </style>
 </head>
 <body>
 
 <nav id="nav">
-  <div class="nav-logo">S·O</div>
-  <div class="nav-tag">Бренд-платформа · Драфт 1.0</div>
+  <div class="nav-logo">S&middot;O</div>
+  <div class="nav-tag">Бренд-платформа &middot; Драфт 1.1</div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-label">Milano · 2026</div>
+  <div class="hero-label">Milano &middot; 2026</div>
   <h1 class="hero-title">SO<br><em>Milano</em></h1>
-  <p class="hero-sub">Первый драфт бренд-платформы. Для обсуждения с командой.</p>
+  <p class="hero-sub">Бренд-платформа. Драфт 1.1 &mdash; для обсуждения с командой.</p>
   <div class="hero-scroll">
     <div class="hero-scroll-line"></div>
     Листать
   </div>
 </section>
 
-<!-- 01 ESSENCE -->
-<section class="section essence" id="essence">
-  <div class="section-label">Блок 01 — Суть бренда</div>
-  <h2 class="section-title">Суть</h2>
+<!-- 00 СТЕРЖЕНЬ -->
+<section class="section dark" id="core">
+  <div class="section-label">00 &mdash; Стержень бренда</div>
+  <h2 class="section-title">Одна фраза</h2>
   <div class="divider"></div>
-  <p class="essence-quote">
-    «Место, куда хочется вернуться.<br>
-    Днём — <span>за едой</span>.<br>
-    Вечером — <span>за атмосферой</span>.»
+  <div class="essence-tagline">
+    SO Milano &mdash; <em>городской ресторанный формат</em><br>
+    с вечерней lounge-культурой,<br>
+    где сильная кухня, эстетика пространства<br>
+    и ритуал общения важнее кальянных стереотипов.
+  </div>
+  <p class="body-text">
+    Это не слоган. Это внутренний ориентир &mdash; фраза, с которой сверяются все последующие решения: по дизайну, интерьеру, коммуникации, найму, меню.
   </p>
-  <p class="essence-body">SO Milano — городской ресторан с вечерней lounge-атмосферой. Место, где сильная кухня существует рядом с кальяном — не как уступка, а как полноправная часть опыта.</p>
-  <p class="essence-body">Днём это ресторан для тех, кто живёт и работает рядом. Вечером пространство меняет ритм: становится темнее, теплее, медленнее.</p>
-  <p class="essence-body" style="color: rgba(247,245,240,0.3); font-style: italic; margin-top: 24px;">SO — это не аббревиатура и не просто буквы. Это интонация. Уверенная, короткая, запоминающаяся. Такая, которую легко сказать на любом языке.</p>
 </section>
 
-<!-- 02 MISSION -->
-<section class="section mission" id="mission">
-  <div class="section-label">Блок 02 — Миссия</div>
+<!-- 01 ПРИЧИНА СУЩЕСТВОВАНИЯ -->
+<section class="section" id="reason">
+  <div class="section-label">01 &mdash; Причина существования</div>
+  <h2 class="section-title">На чём<br>стоит бренд</h2>
+  <div class="divider"></div>
+  <p class="body-text">
+    SO &mdash; это не стартап с нуля. За брендом стоит реальный опыт: заведение, которое работает, аудитория, которая возвращается, и кухня, которую гости называют главной причиной выбора. Платформа не создаёт образ &mdash; она оформляет то, что уже есть.
+  </p>
+  <div class="grid-2" style="margin-top: 48px;">
+    <div class="grid-cell">
+      <div class="grid-cell-num">6</div>
+      <div class="grid-cell-title">Лет работы</div>
+      <div class="grid-cell-text">Существующая база постоянных гостей. Репутация, которую не нужно создавать с нуля &mdash; нужно оформить и усилить.</div>
+    </div>
+    <div class="grid-cell">
+      <div class="grid-cell-num">30+</div>
+      <div class="grid-cell-title">Блюд из-под ножа</div>
+      <div class="grid-cell-text">Полноценная кухня &mdash; не закуски к кальяну. Это конкурентное преимущество, которое уже работает и которое гости замечают сами.</div>
+    </div>
+    <div class="grid-cell">
+      <div class="grid-cell-num">300</div>
+      <div class="grid-cell-title">м&sup2; в двух залах</div>
+      <div class="grid-cell-text">Пространство под два режима работы: дневная ресторанная посадка и вечерний lounge. Один интерьер &mdash; два ощущения.</div>
+    </div>
+    <div class="grid-cell">
+      <div class="grid-cell-num">SO</div>
+      <div class="grid-cell-title">Имя, пригодное для роста</div>
+      <div class="grid-cell-text">Короткое, нейтральное в digital, легко произносится на любом языке. Работает как для одной точки, так и для сети.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 МИССИЯ -->
+<section class="section dark" id="mission">
+  <div class="section-label">02 &mdash; Миссия</div>
   <h2 class="section-title">Миссия</h2>
   <div class="divider"></div>
-  <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(20px,3vw,32px); font-weight:300; font-style:italic; line-height:1.4; color:var(--text); max-width:720px;">
-    «Создать в Милане место, где еда и атмосфера равны по значимости.»
+  <div class="pull-quote">
+    &laquo;Создать в Милане новый тип городского заведения &mdash; где качественная кухня, вечерняя атмосфера и ритуал кальяна сосуществуют <span>без клише</span> и без жанрового перекоса.&raquo;
+  </div>
+  <p class="body-text">
+    Не просто место, где хорошо кормят. И не просто кальянная с едой. SO сознательно занимает позицию между &mdash; и строит из этого свою идентичность.
   </p>
-  <div class="mission-grid">
-    <div class="mission-cell">
-      <div class="mission-cell-num">01</div>
-      <div class="mission-cell-title">Незанятая ниша</div>
-      <div class="mission-cell-text">Большинство кальянных мест в Милане — арабская эстетика или просто «покурить». SO идёт другим путём: полноценный опыт, где еда, общение и атмосфера равны.</div>
-    </div>
-    <div class="mission-cell">
-      <div class="mission-cell-num">02</div>
-      <div class="mission-cell-title">Формирующийся рынок</div>
-      <div class="mission-cell-text">Культура кальяна в Милане только складывается. У SO есть редкая возможность задать новый образ такого места — не подстраиваться, а формировать.</div>
-    </div>
-    <div class="mission-cell">
-      <div class="mission-cell-num">03</div>
-      <div class="mission-cell-title">Ресторан прежде всего</div>
-      <div class="mission-cell-text">Кухня — главное конкурентное преимущество. Это нужно говорить вслух и ставить в центр коммуникации. Кальян — часть опыта, а не вся идентичность.</div>
-    </div>
-    <div class="mission-cell">
-      <div class="mission-cell-num">04</div>
-      <div class="mission-cell-title">Масштаб через смысл</div>
-      <div class="mission-cell-text">Milano сегодня — первая точка. Милан, Рим, другие города. Чтобы масштаб работал, у бренда должен быть характер — не просто визуал.</div>
-    </div>
-  </div>
 </section>
 
-<!-- 03 VALUES -->
-<section class="section values" id="values">
-  <div class="section-label">Блок 03 — Ценности</div>
-  <h2 class="section-title">Ценности</h2>
-  <div class="values-list">
-    <div class="value-item">
-      <div class="value-num">01</div>
-      <div>
-        <div class="value-title">Еда — это серьёзно</div>
-        <div class="value-text">У нас настоящая кухня. Не закуски к кальяну, а полноценные блюда, приготовленные с вниманием. Это то, чем мы отличаемся от большинства мест в городе — и об этом нужно говорить вслух.</div>
+<!-- 03 ЦЕННОСТИ -->
+<section class="section dark" id="values" style="padding-top: 0; border-top: 1px solid rgba(247,245,240,0.08);">
+  <div style="padding-top: 60px;">
+    <div class="section-label">03 &mdash; Ценности бренда</div>
+    <h2 class="section-title">Ценности</h2>
+    <div class="values-list">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <div>
+          <div class="value-title">Еда</div>
+          <div class="value-text">Кухня здесь не фон и не бонус. Это равноправный герой вечера. Гость, который пришёл за кальяном, уходит с мыслью о еде &mdash; и это не случайность, это намерение.</div>
+        </div>
       </div>
-    </div>
-    <div class="value-item">
-      <div class="value-num">02</div>
-      <div>
-        <div class="value-title">Атмосфера — это не декор</div>
-        <div class="value-text">Ощущение места важнее его стиля. Тепло, фактура, приглушённый свет вечером, живой разговор. Не лофт, не арабская кальянная, не клуб. Что-то своё.</div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <div>
+          <div class="value-title">Атмосфера &mdash; не декор</div>
+          <div class="value-text">Ощущение места важнее его стиля. Тепло, фактура, приглушённый свет, живой разговор &mdash; это то, за чем возвращаются. Не за картинкой на стене.</div>
+        </div>
       </div>
-    </div>
-    <div class="value-item">
-      <div class="value-num">03</div>
-      <div>
-        <div class="value-title">Открытость без заборов</div>
-        <div class="value-text">К нам приходят очень разные люди: местные, туристы, экспаты. SO — не закрытый клуб и не нишевое место. Мы рады всем, кто ценит качество.</div>
-      </div>
-    </div>
-    <div class="value-item">
-      <div class="value-num">04</div>
-      <div>
-        <div class="value-title">Масштаб через смысл</div>
-        <div class="value-text">SO Milano — первая точка в истории, которая станет больше. Платформа строится с расчётом на другие города. Характер важнее визуала.</div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <div>
+          <div class="value-title">Открытость</div>
+          <div class="value-text">SO &mdash; не закрытый клуб и не нишевое место. Сюда приходят очень разные люди, и это сила, а не проблема. Единственный фильтр &mdash; уважение к качеству.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 04 POSITIONING -->
-<section class="section positioning" id="positioning">
-  <div class="section-label">Блок 04 — Позиционирование</div>
+<!-- 04 СТРАТЕГИЧЕСКИЕ ПРИНЦИПЫ -->
+<section class="section" id="principles">
+  <div class="section-label">04 &mdash; Стратегические принципы</div>
+  <h2 class="section-title">Принципы,<br>которые не меняются</h2>
+  <div class="divider"></div>
+  <p class="body-text">
+    Это не ценности и не пожелания. Это жёсткие ориентиры, от которых отталкиваются решения по интерьеру, визуалу, коммуникации и масштабированию.
+  </p>
+  <div class="principles-list">
+    <div class="principle-item">
+      <div class="principle-arrow">&rarr;</div>
+      <div class="principle-text"><strong>Ресторан первичен.</strong> Кальян &mdash; часть вечернего опыта, а не вся идентичность. Все решения по позиционированию и рекламе исходят из этого.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">&rarr;</div>
+      <div class="principle-text"><strong>Один интерьер &mdash; два режима.</strong> Пространство не делится на &laquo;дневное&raquo; и &laquo;ночное&raquo;. Оно меняется через свет, темп и атмосферу &mdash; не через ремонт.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">&rarr;</div>
+      <div class="principle-text"><strong>Никакого восточного клише.</strong> Ни в интерьере, ни в тексте, ни в визуале. SO не арабская кальянная &mdash; это городское европейское место.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">&rarr;</div>
+      <div class="principle-text"><strong>Бренд пригоден к развитию.</strong> Логотип, название, визуальная система и тональность строятся с расчётом на то, что SO &mdash; это не только Милан.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">&rarr;</div>
+      <div class="principle-text"><strong>Digital-нейтральное имя.</strong> SO работает в интернете без ограничений, которые создаёт слово Smoke. Это не компромисс &mdash; это осознанный выбор.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ПОЗИЦИОНИРОВАНИЕ -->
+<section class="section dark" id="positioning">
+  <div class="section-label">05 &mdash; Позиционирование</div>
   <h2 class="section-title">Где мы на карте</h2>
   <div class="divider"></div>
-  <p style="font-size:15px; font-weight:300; line-height:1.75; color:var(--text-secondary); max-width:600px;">
-    SO Milano — не кальянная с кухней и не ресторан, который пытается быть модным. Это городское место притяжения, где гость выбирает сам: пришёл на обед — получи обед. Пришёл вечером с компанией — получи атмосферу, кальян и еду одновременно.
+  <p class="body-text">
+    SO Milano &mdash; не кальянная с кухней и не ресторан, который пытается быть модным. Это городское место, где гость выбирает сам: пришёл на обед &mdash; получи обед. Пришёл вечером &mdash; получи атмосферу, кальян и еду одновременно.
   </p>
-  <div class="pos-grid">
-    <div class="pos-col no">
-      <div class="pos-col-title">Чем мы не являемся</div>
-      <div class="pos-item">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+  <div class="pos-grid" style="background: rgba(247,245,240,0.06);">
+    <div class="pos-col" style="background: #161613;">
+      <div class="pos-col-title no" style="color: rgba(247,245,240,0.35);">Чем мы не являемся</div>
+      <div class="pos-item" style="color: rgba(247,245,240,0.45);">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#6b6860" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#6b6860" stroke-width="1.5"/></svg>
         Арабская / восточная кальянная
       </div>
-      <div class="pos-item">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+      <div class="pos-item" style="color: rgba(247,245,240,0.45);">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#6b6860" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#6b6860" stroke-width="1.5"/></svg>
         Лофт с кирпичной стеной
       </div>
-      <div class="pos-item">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+      <div class="pos-item" style="color: rgba(247,245,240,0.45);">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#6b6860" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#6b6860" stroke-width="1.5"/></svg>
         Клуб / ночное заведение
       </div>
-      <div class="pos-item">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
-        «Место только покурить»
+      <div class="pos-item" style="color: rgba(247,245,240,0.45);">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#6b6860" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#6b6860" stroke-width="1.5"/></svg>
+        &laquo;Место только покурить&raquo;
       </div>
-      <div class="pos-item">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#c0bbb5" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#c0bbb5" stroke-width="1.5"/></svg>
+      <div class="pos-item" style="color: rgba(247,245,240,0.45);">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="2" y1="2" x2="12" y2="12" stroke="#6b6860" stroke-width="1.5"/><line x1="12" y1="2" x2="2" y2="12" stroke="#6b6860" stroke-width="1.5"/></svg>
         Пафосный fine dining
       </div>
     </div>
-    <div class="pos-col yes">
-      <div class="pos-col-title">Чем мы являемся</div>
-      <div class="pos-item">
+    <div class="pos-col" style="background: #161613;">
+      <div class="pos-col-title" style="color: var(--accent);">Чем мы являемся</div>
+      <div class="pos-item" style="color: var(--off-white);">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
         Ресторан с вечерней lounge-атмосферой
       </div>
-      <div class="pos-item">
+      <div class="pos-item" style="color: var(--off-white);">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
-        Место для местных и туристов одновременно
+        Место для местных, экспатов и туристов
       </div>
-      <div class="pos-item">
+      <div class="pos-item" style="color: var(--off-white);">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
         Тёплое, фактурное, живое пространство
       </div>
-      <div class="pos-item">
+      <div class="pos-item" style="color: var(--off-white);">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
         Сильная кухня как главное преимущество
       </div>
-      <div class="pos-item">
+      <div class="pos-item" style="color: var(--off-white);">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.5" fill="none"/></svg>
-        Бренд, готовый к масштабированию
+        Бренд, пригодный к развитию
       </div>
     </div>
   </div>
 </section>
 
-<!-- 05 AUDIENCE -->
-<section class="section audience" id="audience">
-  <div class="section-label">Блок 05 — Аудитория</div>
-  <h2 class="section-title">Три портрета гостя</h2>
+<!-- 06 РОЛЬ БРЕНДА -->
+<section class="section" id="role">
+  <div class="section-label">06 &mdash; Роль бренда</div>
+  <h2 class="section-title">Что SO даёт<br>человеку</h2>
+  <div class="divider"></div>
+  <p class="body-text">Бренд &mdash; это не то, что написано в описании. Это то, что человек получает, когда он здесь.</p>
+  <div class="grid-2">
+    <div class="grid-cell">
+      <div class="grid-cell-num">&#8594;</div>
+      <div class="grid-cell-title">Место встречи</div>
+      <div class="grid-cell-text">Сюда удобно позвать: тут и поесть можно, и остаться на вечер. Не нужно выбирать между ужином и атмосферой.</div>
+    </div>
+    <div class="grid-cell">
+      <div class="grid-cell-num">&#8594;</div>
+      <div class="grid-cell-title">Свой вечер в городе</div>
+      <div class="grid-cell-text">Не событие, не клуб, не ресторан с дресс-кодом. Место, где можно расслабиться &mdash; и при этом не чувствовать себя в случайном заведении.</div>
+    </div>
+    <div class="grid-cell">
+      <div class="grid-cell-num">&#8594;</div>
+      <div class="grid-cell-title">Место, которое рекомендуют</div>
+      <div class="grid-cell-text">SO легко описать: &laquo;там хорошая еда и можно покурить кальян&raquo;. Именно простота рекомендации &mdash; это конкурентное преимущество.</div>
+    </div>
+    <div class="grid-cell">
+      <div class="grid-cell-num">&#8594;</div>
+      <div class="grid-cell-title">Повторное возвращение</div>
+      <div class="grid-cell-text">Гость, который пришёл за кальяном, возвращается за едой. Гость, который пришёл пообедать, возвращается вечером. Это модель лояльности.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 АУДИТОРИЯ -->
+<section class="section dark" id="audience">
+  <div class="section-label">07 &mdash; Аудитория</div>
+  <h2 class="section-title">Три портрета<br>гостя</h2>
   <div class="audience-cards">
     <div class="audience-card">
       <div class="audience-card-icon">
@@ -681,8 +799,9 @@
           <rect x="24" y="17" width="5" height="4" stroke="#f0e8d8" stroke-width="1.1"/>
         </svg>
       </div>
-      <div class="audience-card-title">Местный житель / экспат</div>
-      <div class="audience-card-text">Живёт в районе или в Милане уже не первый год. Знает нас как «лучший кальян», но постепенно открывает кухню. Приходит регулярно — в том числе просто поужинать. Чувствует себя «у своих».</div>
+      <div class="audience-card-badge">Core</div>
+      <div class="audience-card-title">Местный / экспат</div>
+      <div class="audience-card-text">Живёт в районе или в Милане уже не первый год. Приходит регулярно &mdash; за едой, за атмосферой, иногда за кальяном. Это ядро: он формирует репутацию и создаёт ощущение &laquo;живого&raquo; места.</div>
     </div>
     <div class="audience-card">
       <div class="audience-card-icon">
@@ -691,8 +810,9 @@
           <path d="M3 18h30M18 3c-4 5-6 9-6 15s2 10 6 15M18 3c4 5 6 9 6 15s-2 10-6 15" stroke="#f0e8d8" stroke-width="1.2" fill="none"/>
         </svg>
       </div>
+      <div class="audience-card-badge">Secondary</div>
       <div class="audience-card-title">Турист / путешественник</div>
-      <div class="audience-card-text">Находит нас на карте или по рекомендации. Ищет место, где можно и поесть, и провести вечер с настроением. Часто из СНГ, но не только. Для него важны первое впечатление и визуал.</div>
+      <div class="audience-card-text">Находит нас на карте или по рекомендации. Часто из СНГ, но не только. Ищет место, где можно и поесть, и провести вечер. Приносит объём, особенно в сезон.</div>
     </div>
     <div class="audience-card">
       <div class="audience-card-icon">
@@ -700,80 +820,182 @@
           <polygon points="18,3 22,13 33,14 25,22 27,33 18,28 9,33 11,22 3,14 14,13" stroke="#f0e8d8" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
         </svg>
       </div>
-      <div class="audience-card-title">Продвинутый гость кальяна</div>
-      <div class="audience-card-text">Разбирается в кальянах, ценит качество. Не ищет арабскую историю — хочет современный подход и хороший продукт. Именно такие гости рекомендуют нас дальше и возвращаются снова.</div>
+      <div class="audience-card-badge">Ambassador</div>
+      <div class="audience-card-title">Ценитель кальяна</div>
+      <div class="audience-card-text">Разбирается, сравнивает, рекомендует. Не самый массовый гость, но самый влиятельный для репутации. Именно он приводит других &mdash; и именно он замечает, если качество упало.</div>
     </div>
   </div>
 </section>
 
-<!-- 06 TONE -->
-<section class="section tone" id="tone">
-  <div class="section-label">Блок 06 — Голос бренда</div>
+<!-- 08 ГОЛОС БРЕНДА -->
+<section class="section" id="tone">
+  <div class="section-label">08 &mdash; Голос бренда</div>
   <h2 class="section-title">Тональность</h2>
   <div class="divider"></div>
-  <p style="font-size:15px; font-weight:300; line-height:1.75; color:var(--text-secondary); max-width:560px; margin-bottom:0;">
-    Как бренд говорит — это часть его личности. SO Milano говорит уверенно, но без пафоса. Тепло, но не слащаво. С характером, но доступно.
-  </p>
+  <p class="body-text">SO говорит уверенно, но без пафоса. Тепло, но не слащаво. С характером, но доступно для любой аудитории.</p>
   <div class="tone-grid">
     <div class="tone-col">
       <div class="tone-col-title">SO говорит</div>
-      <div class="tone-item"><span class="tone-mark-yes">✓</span> Конкретно и ёмко</div>
-      <div class="tone-item"><span class="tone-mark-yes">✓</span> С теплом, не с дистанцией</div>
-      <div class="tone-item"><span class="tone-mark-yes">✓</span> Про еду — с гордостью</div>
-      <div class="tone-item"><span class="tone-mark-yes">✓</span> Про атмосферу — через детали</div>
-      <div class="tone-item"><span class="tone-mark-yes">✓</span> На нескольких языках органично</div>
+      <div class="tone-item"><span class="tone-mark-yes">&#10003;</span> Конкретно и ёмко</div>
+      <div class="tone-item"><span class="tone-mark-yes">&#10003;</span> С теплом, не с дистанцией</div>
+      <div class="tone-item"><span class="tone-mark-yes">&#10003;</span> Про еду &mdash; с гордостью</div>
+      <div class="tone-item"><span class="tone-mark-yes">&#10003;</span> Про атмосферу &mdash; через детали</div>
+      <div class="tone-item"><span class="tone-mark-yes">&#10003;</span> На нескольких языках органично</div>
     </div>
     <div class="tone-col">
       <div class="tone-col-title">SO не говорит</div>
-      <div class="tone-item"><span class="tone-mark-no">✕</span> Избыточными эпитетами</div>
-      <div class="tone-item"><span class="tone-mark-no">✕</span> Клубным языком</div>
-      <div class="tone-item"><span class="tone-mark-no">✕</span> С акцентом только на кальяне</div>
-      <div class="tone-item"><span class="tone-mark-no">✕</span> Слишком формально</div>
-      <div class="tone-item"><span class="tone-mark-no">✕</span> С восточными отсылками в тексте</div>
+      <div class="tone-item"><span class="tone-mark-no">&#10005;</span> Избыточными эпитетами</div>
+      <div class="tone-item"><span class="tone-mark-no">&#10005;</span> Клубным языком</div>
+      <div class="tone-item"><span class="tone-mark-no">&#10005;</span> С акцентом только на кальяне</div>
+      <div class="tone-item"><span class="tone-mark-no">&#10005;</span> Слишком формально</div>
+      <div class="tone-item"><span class="tone-mark-no">&#10005;</span> С восточными отсылками в тексте</div>
     </div>
   </div>
   <div class="tone-example">
-    <div class="tone-example-label">Пример интонации — Instagram</div>
-    <div class="tone-example-text">«Сегодня из кухни: тартар из говядины с трюфельным маслом и хрустящим луком-шалот. Пока есть — берите. Вечером откроем второй зал.»</div>
+    <div class="tone-example-label">Пример &mdash; Instagram</div>
+    <div class="tone-example-text">&laquo;Сегодня из кухни: тартар из говядины с трюфельным маслом и хрустящим луком-шалот. Пока есть &mdash; берите. Вечером откроем второй зал.&raquo;</div>
   </div>
 </section>
 
-<!-- NEXT STEPS -->
-<section class="section steps" id="steps">
-  <div class="section-label">Что дальше</div>
-  <h2 class="section-title">Следующие шаги</h2>
-  <div class="steps-list">
-    <div class="step-item">
-      <div class="step-num">01</div>
-      <div class="step-text">Финальная правка бренд-платформы по итогам обсуждения</div>
-      <div class="step-who">Команда + клиент</div>
+<!-- 09 ВИЗУАЛЬНЫЕ ПРИНЦИПЫ -->
+<section class="section dark" id="visual">
+  <div class="section-label">09 &mdash; Визуальный язык</div>
+  <h2 class="section-title">Принципы<br>для дизайна<br>и интерьера</h2>
+  <div class="divider"></div>
+  <p class="body-text">Бренд-платформа должна переходить в конкретные визуальные решения. Вот ориентиры, которые сохраняются на всех носителях &mdash; от интерьера до Instagram.</p>
+  <div class="values-list">
+    <div class="value-item">
+      <div class="value-num">&#8594;</div>
+      <div>
+        <div class="value-title">Тепло вместо холода</div>
+        <div class="value-text">Натуральные материалы, тактильные фактуры, тёплый свет. Не минимализм ради минимализма &mdash; а уют, за которым хочется вернуться.</div>
+      </div>
     </div>
-    <div class="step-item">
-      <div class="step-num">02</div>
-      <div class="step-text">Разработка визуальной системы: цвета, шрифты, носители</div>
-      <div class="step-who">Дизайнер</div>
+    <div class="value-item">
+      <div class="value-num">&#8594;</div>
+      <div>
+        <div class="value-title">Взрослость вместо клубности</div>
+        <div class="value-text">Никаких неоновых вывесок, агрессивной типографики и клубных паттернов. SO выглядит спокойно и дорого &mdash; без попытки казаться моложе, чем оно есть.</div>
+      </div>
     </div>
-    <div class="step-item">
-      <div class="step-num">03</div>
-      <div class="step-text">Оценка логотипа SO через призму утверждённой платформы</div>
-      <div class="step-who">Дизайнер</div>
+    <div class="value-item">
+      <div class="value-num">&#8594;</div>
+      <div>
+        <div class="value-title">Сдержанная выразительность</div>
+        <div class="value-text">Акцент &mdash; один. Шрифт &mdash; не более двух. Цвет &mdash; система, а не набор. Визуал SO говорит тихо, но его слышно.</div>
+      </div>
     </div>
-    <div class="step-item">
-      <div class="step-num">04</div>
-      <div class="step-text">Интерьерные принципы на основе бренд-платформы</div>
-      <div class="step-who">Архитектор + Дизайнер</div>
+    <div class="value-item">
+      <div class="value-num">&#8594;</div>
+      <div>
+        <div class="value-title">Тактильность вместо лофтовой грубости</div>
+        <div class="value-text">Кирпич, бетон и металлические трубы &mdash; это не SO. Текстиль, дерево, мягкие поверхности, приглушённые тона. Интерьер должен быть приятен на ощупь &mdash; буквально.</div>
+      </div>
     </div>
-    <div class="step-item">
-      <div class="step-num">05</div>
-      <div class="step-text">Разработка брендбука и шаблонов для коммуникаций</div>
-      <div class="step-who">Дизайнер</div>
+  </div>
+
+  <div class="essence-box">
+    <div class="essence-box-label">Brand Essence &mdash; в трёх словах</div>
+    <div class="essence-box-text">Городской вечерний ритуал.</div>
+  </div>
+</section>
+
+<!-- СЛЕДУЮЩИЕ ШАГИ -->
+<section class="section dark" id="steps" style="padding-top: 0; border-top: 1px solid rgba(247,245,240,0.08);">
+  <div style="padding-top: 60px;">
+    <div class="section-label">Что дальше</div>
+    <h2 class="section-title">Следующие шаги</h2>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-text">Финальная правка платформы по итогам обсуждения</div>
+        <div class="step-who">Команда + клиент</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-text">Разработка визуальной системы: цвета, шрифты, носители</div>
+        <div class="step-who">Дизайнер</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-text">Оценка и донастройка логотипа SO через призму платформы</div>
+        <div class="step-who">Дизайнер</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div class="step-text">Интерьерные принципы на основе визуального языка платформы</div>
+        <div class="step-who">Архитектор + Дизайнер</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">05</div>
+        <div class="step-text">Разработка брендбука и шаблонов для коммуникаций</div>
+        <div class="step-who">Дизайнер</div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- КАК ИСПОЛЬЗОВАТЬ -->
+<section class="section" id="usage">
+  <div class="section-label">Практика</div>
+  <h2 class="section-title">Как бренд-платформа<br>работает дальше</h2>
+  <div class="divider"></div>
+  <p class="body-text">
+    Бренд-платформа &mdash; это не разовый документ и не красивая презентация. Это внутренний инструмент, который отвечает на один вопрос: соответствует ли это решение тому, кем мы хотим быть?
+  </p>
+  <p class="body-text" style="margin-top: 0;">
+    Любой следующий шаг &mdash; от выбора шрифта до открытия новой точки &mdash; сверяется с платформой. Это экономит время, снижает количество субъективных споров и даёт команде общий язык.
+  </p>
+  <div class="principles-list" style="margin-top: 48px;">
+    <div class="principle-item">
+      <div class="principle-arrow">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="#b8894a" stroke-width="1.2"/><path d="M4 8h5M7 5.5L9.5 8 7 10.5" stroke="#b8894a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="principle-text"><strong>Визуальная идентичность.</strong> Логотип, цвета, шрифты, носители &mdash; всё разрабатывается на основе платформы, а не интуиции. Дизайнер получает чёткое задание вместо размытого брифа.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="#b8894a" stroke-width="1.2"/><path d="M4 8h5M7 5.5L9.5 8 7 10.5" stroke="#b8894a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="principle-text"><strong>Интерьер.</strong> Архитектор и дизайнер интерьера работают не вслепую: у них есть ценности, визуальные принципы и чёткое понимание, какое ощущение должно возникать у гостя.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="#b8894a" stroke-width="1.2"/><path d="M4 8h5M7 5.5L9.5 8 7 10.5" stroke="#b8894a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="principle-text"><strong>Сайт и соцсети.</strong> SMM-менеджер, копирайтер или подрядчик получают готовый тон голоса, понимание аудитории и границы коммуникации. Больше не нужно каждый раз объяснять, как писать про заведение.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="#b8894a" stroke-width="1.2"/><path d="M4 8h5M7 5.5L9.5 8 7 10.5" stroke="#b8894a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="principle-text"><strong>Меню и подача.</strong> Как блюдо называется, как оно описано, как выглядит на столе &mdash; всё это часть бренда. Платформа помогает принимать эти решения последовательно.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="#b8894a" stroke-width="1.2"/><path d="M4 8h5M7 5.5L9.5 8 7 10.5" stroke="#b8894a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="principle-text"><strong>Найм и сервис.</strong> Как говорит хостес, как ведёт себя официант, что транслирует кальянщик &mdash; это тоже бренд. Платформа становится основой для стандартов сервиса и онбординга команды.</div>
+    </div>
+    <div class="principle-item">
+      <div class="principle-arrow">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="#b8894a" stroke-width="1.2"/><path d="M4 8h5M7 5.5L9.5 8 7 10.5" stroke="#b8894a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="principle-text"><strong>Новые точки.</strong> Когда придёт время открывать SO в другом городе, платформа уже готова. Не нужно начинать с нуля &mdash; нужно адаптировать под локацию то, что уже сформулировано.</div>
+    </div>
+  </div>
+</section>
+
+<div style="background: var(--off-white); padding: 48px 6vw; border-top: 1px solid var(--light-gray);">
+  <p style="font-size: 12px; font-weight: 300; line-height: 1.8; color: var(--text-secondary); max-width: 680px;">
+    <span style="font-weight: 500; color: var(--text);">Примечание.</span>
+    Визуальное оформление этого документа &mdash; шрифты, цвета, вёрстка &mdash; создано специально для презентации бренд-платформы и не является финальным фирменным стилем SO Milano. Разработка визуальной идентичности &mdash; логотипа, палитры, типографики и носителей &mdash; является отдельным этапом работы и будет вестись на основе утверждённой платформы.
+  </p>
+</div>
 
 <footer>
-  <div class="footer-logo">S·O Milano</div>
-  <div class="footer-meta">Бренд-платформа · Драфт 1.0 · 2026</div>
+  <div class="footer-logo">S&middot;O Milano</div>
+  <div class="footer-meta">Бренд-платформа &middot; Драфт 1.1 &middot; 2026</div>
 </footer>
 
 <script>
@@ -787,7 +1009,7 @@
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.06 });
   sections.forEach(s => observer.observe(s));
 </script>
 </body>
