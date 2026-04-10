@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -19,231 +20,233 @@
     --text-secondary: #6b6860;
   }
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--off-white);
-    color: var(--text);
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–off-white);
+color: var(–text);
+min-height: 100svh;
+display: flex;
+flex-direction: column;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
 
-  /* NAV */
-  nav {
-    padding: 24px 6vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--light-gray);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--text);
-  }
-  .nav-tag {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-  }
+/* NAV */
+nav {
+padding: 24px 6vw;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid var(–light-gray);
+}
+.nav-logo {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 22px;
+font-weight: 300;
+letter-spacing: 0.1em;
+color: var(–text);
+}
+.nav-tag {
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–text-secondary);
+}
 
-  /* MAIN */
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 6vw;
-  }
+/* MAIN */
+main {
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 80px 6vw;
+}
 
-  /* INTRO */
-  .intro {
-    margin-bottom: 64px;
-  }
-  .intro-label {
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(8px);
-    animation: fadeUp 0.6s ease 0.1s forwards;
-  }
-  .intro-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 9vw, 120px);
-    font-weight: 300;
-    line-height: 0.92;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.8s ease 0.25s forwards;
-  }
-  .intro-title em {
-    font-style: italic;
-    color: var(--accent);
-  }
+/* INTRO */
+.intro {
+margin-bottom: 64px;
+}
+.intro-label {
+font-size: 11px;
+font-weight: 400;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 20px;
+opacity: 0;
+transform: translateY(8px);
+animation: fadeUp 0.6s ease 0.1s forwards;
+}
+.intro-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(52px, 9vw, 120px);
+font-weight: 300;
+line-height: 0.92;
+letter-spacing: -0.02em;
+color: var(–text);
+opacity: 0;
+transform: translateY(16px);
+animation: fadeUp 0.8s ease 0.25s forwards;
+}
+.intro-title em {
+font-style: italic;
+color: var(–accent);
+}
 
-  /* CARDS */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: var(--light-gray);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s ease 0.5s forwards;
-  }
+/* CARDS */
+.cards {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 12px;
+background: transparent;
+opacity: 0;
+transform: translateY(20px);
+animation: fadeUp 0.8s ease 0.5s forwards;
+}
 
-  .card {
-    background: var(--off-white);
-    padding: 40px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 300px;
-    text-decoration: none;
-    color: inherit;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s ease;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .card.active:hover { background: var(--accent-light); }
-  .card.active:hover::before { transform: scaleX(1); }
+.card {
+background: var(–off-white);
+padding: 40px 32px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+min-height: 300px;
+text-decoration: none;
+color: inherit;
+position: relative;
+overflow: hidden;
+transition: background 0.3s ease, border-color 0.3s ease;
+border: 1px solid var(–light-gray);
+}
+.card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: var(–accent);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.4s ease;
+}
+.card.active:hover { background: var(–accent-light); border-color: var(–accent); }
+.card.active:hover::before { transform: scaleX(1); }
 
-  .card-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--accent);
-    opacity: 0.6;
-    letter-spacing: 0.1em;
-    margin-bottom: 32px;
-  }
-  .card.pending .card-num { opacity: 0.3; }
+.card-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 13px;
+font-weight: 300;
+color: var(–accent);
+opacity: 0.6;
+letter-spacing: 0.1em;
+margin-bottom: 32px;
+}
+.card.pending .card-num { opacity: 0.3; }
 
-  .card-body { flex: 1; }
+.card-body { flex: 1; }
 
-  .card-status {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    margin-bottom: 16px;
-    border: 1px solid rgba(184,137,74,0.35);
-    color: var(--accent);
-  }
-  .card.pending .card-status {
-    border-color: var(--light-gray);
-    color: var(--text-secondary);
-    opacity: 0.6;
-  }
+.card-status {
+display: inline-block;
+font-size: 10px;
+font-weight: 400;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+padding: 3px 10px;
+margin-bottom: 16px;
+border: 1px solid rgba(184,137,74,0.35);
+color: var(–accent);
+}
+.card.pending .card-status {
+border-color: var(–light-gray);
+color: var(–text-secondary);
+opacity: 0.6;
+}
 
-  .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(30px, 3vw, 44px);
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-  .card.pending .card-title { color: var(--text-secondary); }
+.card-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(30px, 3vw, 44px);
+font-weight: 300;
+line-height: 1;
+letter-spacing: -0.01em;
+color: var(–text);
+margin-bottom: 16px;
+}
+.card.pending .card-title { color: var(–text-secondary); }
 
-  .card-desc {
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--text-secondary);
-  }
-  .card.pending .card-desc { opacity: 0.6; }
+.card-desc {
+font-size: 13px;
+font-weight: 300;
+line-height: 1.75;
+color: var(–text-secondary);
+}
+.card.pending .card-desc { opacity: 0.6; }
 
-  .card-arrow {
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    transition: gap 0.3s ease;
-  }
-  .card.active:hover .card-arrow { gap: 16px; }
-  .card.pending .card-arrow { color: var(--light-gray); }
+.card-arrow {
+margin-top: 40px;
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–accent);
+transition: gap 0.3s ease;
+}
+.card.active:hover .card-arrow { gap: 16px; }
+.card.pending .card-arrow { color: var(–light-gray); }
 
-  .card-arrow-line {
-    width: 24px;
-    height: 1px;
-    background: currentColor;
-    transition: width 0.3s ease;
-  }
-  .card.active:hover .card-arrow-line { width: 36px; }
+.card-arrow-line {
+width: 24px;
+height: 1px;
+background: currentColor;
+transition: width 0.3s ease;
+}
+.card.active:hover .card-arrow-line { width: 36px; }
 
-  /* FOOTER */
-  footer {
-    padding: 24px 6vw;
-    border-top: 1px solid var(--light-gray);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
-  }
-  .footer-meta {
-    font-size: 11px;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-    opacity: 0.5;
-  }
+/* FOOTER */
+footer {
+padding: 24px 6vw;
+border-top: 1px solid var(–light-gray);
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 12px;
+}
+.footer-logo {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 16px;
+font-weight: 300;
+letter-spacing: 0.1em;
+color: var(–text-secondary);
+}
+.footer-meta {
+font-size: 11px;
+color: var(–text-secondary);
+letter-spacing: 0.05em;
+opacity: 0.5;
+}
 
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
+@keyframes fadeUp {
+to { opacity: 1; transform: translateY(0); }
+}
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .cards { grid-template-columns: repeat(2, 1fr); }
-    .card { min-height: 260px; }
-  }
-  @media (max-width: 540px) {
-    .cards { grid-template-columns: 1fr; }
-    main { padding: 60px 5vw; }
-    nav { padding: 20px 5vw; }
-    footer { padding: 20px 5vw; }
-    .intro { margin-bottom: 48px; }
-  }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+.cards { grid-template-columns: repeat(2, 1fr); }
+.card { min-height: 260px; }
+}
+@media (max-width: 540px) {
+.cards { grid-template-columns: 1fr; }
+main { padding: 60px 5vw; }
+nav { padding: 20px 5vw; }
+footer { padding: 20px 5vw; }
+.intro { margin-bottom: 48px; }
+}
 </style>
+
 </head>
 <body>
 
@@ -260,65 +263,67 @@
 
   <div class="cards">
 
-    <a class="card active" href="strategy.html">
-      <div>
-        <div class="card-num">01</div>
-        <div class="card-status">В работе</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Стратегия</div>
-        <div class="card-desc">Бренд-платформа + прикладные выводы.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
-        Открыть
-      </div>
-    </a>
+```
+<a class="card active" href="strategy.html">
+  <div>
+    <div class="card-num">01</div>
+    <div class="card-status">В работе</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Стратегия</div>
+    <div class="card-desc">Бренд-платформа + прикладные выводы.</div>
+  </div>
+  <div class="card-arrow">
+    <div class="card-arrow-line"></div>
+    Открыть
+  </div>
+</a>
 
-    <a class="card pending" href="identity.html">
-      <div>
-        <div class="card-num">02</div>
-        <div class="card-status">Следующий этап</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Айдентика</div>
-        <div class="card-desc">Визуальная концепция + логотип + цвет + типографика.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
-        Скоро
-      </div>
-    </a>
+<a class="card pending" href="identity.html">
+  <div>
+    <div class="card-num">02</div>
+    <div class="card-status">Следующий этап</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Айдентика</div>
+    <div class="card-desc">Визуальная концепция + логотип + цвет + типографика.</div>
+  </div>
+  <div class="card-arrow">
+    <div class="card-arrow-line"></div>
+    Скоро
+  </div>
+</a>
 
-    <a class="card pending" href="application.html">
-      <div>
-        <div class="card-num">03</div>
-        <div class="card-status">Планируется</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Применение</div>
-        <div class="card-desc">Меню, соцсети, сайт, шаблоны, базовые носители.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
-        Скоро
-      </div>
-    </a>
+<a class="card pending" href="application.html">
+  <div>
+    <div class="card-num">03</div>
+    <div class="card-status">Планируется</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Применение</div>
+    <div class="card-desc">Меню, соцсети, сайт, шаблоны, базовые носители.</div>
+  </div>
+  <div class="card-arrow">
+    <div class="card-arrow-line"></div>
+    Скоро
+  </div>
+</a>
 
-    <a class="card pending" href="rollout.html">
-      <div>
-        <div class="card-num">04</div>
-        <div class="card-status">Планируется</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Внедрение</div>
-        <div class="card-desc">Внедрение и сопровождение.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
-        Скоро
-      </div>
-    </a>
+<a class="card pending" href="rollout.html">
+  <div>
+    <div class="card-num">04</div>
+    <div class="card-status">Планируется</div>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Внедрение</div>
+    <div class="card-desc">Внедрение и сопровождение.</div>
+  </div>
+  <div class="card-arrow">
+    <div class="card-arrow-line"></div>
+    Скоро
+  </div>
+</a>
+```
 
   </div>
 </main>
