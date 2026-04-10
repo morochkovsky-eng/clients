@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SO Milano — Проект</title>
+<title>SO Milano — Бренд-система</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -12,7 +12,10 @@
     --black: #0f0f0d;
     --off-white: #f7f5f0;
     --light-gray: #e8e5df;
+    --cream-dark: #ede9e1;
     --accent: #b8894a;
+    --accent-light: #f0e8d8;
+    --text: #1a1916;
     --text-secondary: #6b6860;
   }
 
@@ -21,8 +24,8 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--black);
-    color: var(--off-white);
+    background: var(--off-white);
+    color: var(--text);
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -30,44 +33,30 @@
     overflow-x: hidden;
   }
 
-  /* BG */
-  .bg {
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(184,137,74,0.10) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(184,137,74,0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
   /* NAV */
   nav {
-    position: relative;
-    z-index: 10;
     padding: 24px 6vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(247,245,240,0.06);
+    border-bottom: 1px solid var(--light-gray);
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 300;
     letter-spacing: 0.1em;
-    color: var(--off-white);
+    color: var(--text);
   }
   .nav-tag {
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(247,245,240,0.3);
+    color: var(--text-secondary);
   }
 
   /* MAIN */
   main {
-    position: relative;
-    z-index: 10;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -75,6 +64,7 @@
     padding: 80px 6vw;
   }
 
+  /* INTRO */
   .intro {
     margin-bottom: 64px;
   }
@@ -91,10 +81,11 @@
   }
   .intro-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(48px, 9vw, 110px);
+    font-size: clamp(52px, 9vw, 120px);
     font-weight: 300;
     line-height: 0.92;
     letter-spacing: -0.02em;
+    color: var(--text);
     opacity: 0;
     transform: translateY(16px);
     animation: fadeUp 0.8s ease 0.25s forwards;
@@ -109,25 +100,24 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
-    background: rgba(247,245,240,0.06);
+    background: var(--light-gray);
     opacity: 0;
     transform: translateY(20px);
     animation: fadeUp 0.8s ease 0.5s forwards;
   }
 
   .card {
-    background: #161613;
+    background: var(--off-white);
     padding: 40px 32px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 280px;
+    min-height: 300px;
     text-decoration: none;
     color: inherit;
     position: relative;
     overflow: hidden;
     transition: background 0.3s ease;
-    cursor: pointer;
   }
   .card::before {
     content: '';
@@ -139,37 +129,57 @@
     transform-origin: left;
     transition: transform 0.4s ease;
   }
-  .card:hover { background: #1c1b18; }
-  .card:hover::before { transform: scaleX(1); }
+  .card.active:hover { background: var(--accent-light); }
+  .card.active:hover::before { transform: scaleX(1); }
 
   .card-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--accent);
-    opacity: 0.5;
+    opacity: 0.6;
     letter-spacing: 0.1em;
     margin-bottom: 32px;
   }
+  .card.pending .card-num { opacity: 0.3; }
 
   .card-body { flex: 1; }
 
+  .card-status {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(184,137,74,0.35);
+    color: var(--accent);
+  }
+  .card.pending .card-status {
+    border-color: var(--light-gray);
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+
   .card-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 3vw, 40px);
+    font-size: clamp(30px, 3vw, 44px);
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.01em;
-    color: var(--off-white);
+    color: var(--text);
     margin-bottom: 16px;
   }
+  .card.pending .card-title { color: var(--text-secondary); }
 
   .card-desc {
     font-size: 13px;
     font-weight: 300;
-    line-height: 1.7;
-    color: rgba(247,245,240,0.45);
+    line-height: 1.75;
+    color: var(--text-secondary);
   }
+  .card.pending .card-desc { opacity: 0.6; }
 
   .card-arrow {
     margin-top: 40px;
@@ -179,46 +189,24 @@
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(247,245,240,0.25);
-    transition: color 0.3s ease;
+    color: var(--accent);
+    transition: gap 0.3s ease;
   }
-  .card:hover .card-arrow { color: var(--accent); }
+  .card.active:hover .card-arrow { gap: 16px; }
+  .card.pending .card-arrow { color: var(--light-gray); }
+
   .card-arrow-line {
     width: 24px;
     height: 1px;
     background: currentColor;
     transition: width 0.3s ease;
   }
-  .card:hover .card-arrow-line { width: 40px; }
-
-  /* STATUS */
-  .card.active .card-arrow { color: var(--accent); }
-  .card.pending .card-title { color: rgba(247,245,240,0.4); }
-  .card.pending .card-arrow { color: rgba(247,245,240,0.15); }
-  .card.pending:hover .card-arrow { color: rgba(247,245,240,0.2); }
-  .card.pending::before { display: none; }
-  .card-status {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    margin-bottom: 16px;
-    border: 1px solid rgba(184,137,74,0.3);
-    color: var(--accent);
-  }
-  .card.pending .card-status {
-    border-color: rgba(247,245,240,0.1);
-    color: rgba(247,245,240,0.25);
-  }
+  .card.active:hover .card-arrow-line { width: 36px; }
 
   /* FOOTER */
   footer {
-    position: relative;
-    z-index: 10;
     padding: 24px 6vw;
-    border-top: 1px solid rgba(247,245,240,0.06);
+    border-top: 1px solid var(--light-gray);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -230,12 +218,13 @@
     font-size: 16px;
     font-weight: 300;
     letter-spacing: 0.1em;
-    color: rgba(247,245,240,0.25);
+    color: var(--text-secondary);
   }
   .footer-meta {
     font-size: 11px;
-    color: rgba(247,245,240,0.15);
+    color: var(--text-secondary);
     letter-spacing: 0.05em;
+    opacity: 0.5;
   }
 
   @keyframes fadeUp {
@@ -245,41 +234,39 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .cards { grid-template-columns: repeat(2, 1fr); }
-    .card { min-height: 240px; }
+    .card { min-height: 260px; }
   }
   @media (max-width: 540px) {
     .cards { grid-template-columns: 1fr; }
     main { padding: 60px 5vw; }
     nav { padding: 20px 5vw; }
     footer { padding: 20px 5vw; }
+    .intro { margin-bottom: 48px; }
   }
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
-
 <nav>
   <div class="nav-logo">S&middot;O Milano</div>
-  <div class="nav-tag">Проект &middot; 2026</div>
+  <div class="nav-tag">Бренд-система &middot; 2026</div>
 </nav>
 
 <main>
   <div class="intro">
-    <div class="intro-label">SO Milano &mdash; Брендинг</div>
-    <h1 class="intro-title">Четыре<br><em>фазы.</em></h1>
+    <div class="intro-label">SO Milano</div>
+    <h1 class="intro-title">Бренд-<br><em>система</em></h1>
   </div>
 
   <div class="cards">
 
-    <!-- STRATEGY -->
     <a class="card active" href="so_milano.html">
       <div>
         <div class="card-num">01</div>
         <div class="card-status">В работе</div>
       </div>
       <div class="card-body">
-        <div class="card-title">Strategy</div>
+        <div class="card-title">Стратегия</div>
         <div class="card-desc">Бренд-платформа + прикладные выводы.</div>
       </div>
       <div class="card-arrow">
@@ -288,14 +275,13 @@
       </div>
     </a>
 
-    <!-- IDENTITY -->
     <a class="card pending" href="identity.html">
       <div>
         <div class="card-num">02</div>
         <div class="card-status">Следующий этап</div>
       </div>
       <div class="card-body">
-        <div class="card-title">Identity</div>
+        <div class="card-title">Айдентика</div>
         <div class="card-desc">Визуальная концепция + логотип + цвет + типографика.</div>
       </div>
       <div class="card-arrow">
@@ -304,14 +290,13 @@
       </div>
     </a>
 
-    <!-- APPLICATION -->
     <a class="card pending" href="application.html">
       <div>
         <div class="card-num">03</div>
         <div class="card-status">Планируется</div>
       </div>
       <div class="card-body">
-        <div class="card-title">Application</div>
+        <div class="card-title">Применение</div>
         <div class="card-desc">Меню, соцсети, сайт, шаблоны, базовые носители.</div>
       </div>
       <div class="card-arrow">
@@ -320,14 +305,13 @@
       </div>
     </a>
 
-    <!-- ROLLOUT -->
     <a class="card pending" href="rollout.html">
       <div>
         <div class="card-num">04</div>
         <div class="card-status">Планируется</div>
       </div>
       <div class="card-body">
-        <div class="card-title">Rollout</div>
+        <div class="card-title">Внедрение</div>
         <div class="card-desc">Внедрение и сопровождение.</div>
       </div>
       <div class="card-arrow">
@@ -341,7 +325,7 @@
 
 <footer>
   <div class="footer-logo">S&middot;O Milano</div>
-  <div class="footer-meta">Брендинг &middot; 2026</div>
+  <div class="footer-meta">Бренд-система &middot; 2026</div>
 </footer>
 
 </body>
