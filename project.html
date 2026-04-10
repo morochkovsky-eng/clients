@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SO Milano — Предложение</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0f0f0d;
+    --off-white: #f7f5f0;
+    --light-gray: #e8e5df;
+    --accent: #b8894a;
+    --accent-light: #f0e8d8;
+    --text: #1a1916;
+    --text-secondary: #6b6860;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    padding: 24px 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--text);
+  }
+  .nav-tag {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* HERO */
+  .hero {
+    padding: 100px 6vw 80px;
+    border-bottom: 1px solid var(--light-gray);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.8s ease 0.35s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-right {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.7s ease 0.55s forwards;
+  }
+  .hero-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    max-width: 440px;
+  }
+  .hero-total-label {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .hero-total {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .hero-total span {
+    font-size: 0.5em;
+    color: var(--accent);
+    font-style: italic;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* PHASES */
+  .phases {
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .phase {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 40px;
+    align-items: start;
+    padding: 52px 6vw;
+    border-bottom: 1px solid var(--light-gray);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .phase:last-child { border-bottom: none; }
+  .phase.visible { opacity: 1; transform: translateY(0); }
+
+  .phase-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+    padding-top: 6px;
+  }
+
+  .phase-body {}
+  .phase-status {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(184,137,74,0.35);
+    color: var(--accent);
+  }
+  .phase-status.done {
+    border-color: rgba(100,160,100,0.3);
+    color: #5a9060;
+  }
+  .phase-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.1;
+  }
+  .phase-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 540px;
+  }
+  .phase-includes {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .phase-include-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-secondary);
+  }
+  .phase-include-item svg { flex-shrink: 0; }
+
+  .phase-price {
+    text-align: right;
+    padding-top: 6px;
+    flex-shrink: 0;
+  }
+  .phase-price-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .phase-price-cur {
+    font-size: 14px;
+    color: var(--accent);
+    font-style: italic;
+    margin-left: 4px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .phase-price-note {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  /* TOTAL BAR */
+  .total-bar {
+    padding: 52px 6vw;
+    background: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .total-bar.visible { opacity: 1; transform: translateY(0); }
+
+  .total-bar-left {}
+  .total-bar-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .total-bar-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(247,245,240,0.5);
+    max-width: 480px;
+  }
+  .total-bar-right {
+    text-align: right;
+  }
+  .total-bar-sublabel {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.35);
+    margin-bottom: 8px;
+  }
+  .total-bar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--off-white);
+    line-height: 1;
+  }
+  .total-bar-num em {
+    font-style: italic;
+    color: var(--accent);
+    font-size: 0.55em;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+
+  /* NOTE */
+  .note {
+    padding: 48px 6vw;
+    border-bottom: 1px solid var(--light-gray);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .note.visible { opacity: 1; transform: translateY(0); }
+  .note-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .note-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--light-gray);
+    margin-top: 32px;
+  }
+  .note-cell {
+    background: var(--off-white);
+    padding: 32px 28px;
+  }
+  .note-cell-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .note-cell-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+  }
+  .footer-meta {
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 80px 5vw 60px; }
+    .phase { grid-template-columns: 40px 1fr; gap: 20px; padding: 40px 5vw; }
+    .phase-price { grid-column: 2; text-align: left; }
+    .note-grid { grid-template-columns: 1fr; }
+    .total-bar { padding: 40px 5vw; }
+    .total-bar-right { text-align: left; }
+    nav { padding: 20px 5vw; }
+    footer { padding: 24px 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">S&middot;O Milano</div>
+  <div class="nav-tag">Коммерческое предложение &middot; 2026</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label">SO Milano &mdash; Бренд-система</div>
+    <h1 class="hero-title">Стоимость<br><em>проекта.</em></h1>
+  </div>
+  <div class="hero-right">
+    <p class="hero-desc">
+      Три фазы работы: от стратегии до применения. Фиксированная цена за каждый этап.
+    </p>
+    <div class="hero-total-label">Итого по проекту</div>
+    <div class="hero-total">от 3 200 <span>€</span></div>
+  </div>
+</section>
+
+<!-- PHASE 1 -->
+<div class="phase" id="p1">
+  <div class="phase-num">01</div>
+  <div class="phase-body">
+    <div class="phase-status done">Выполнено</div>
+    <div class="phase-title">Стратегия</div>
+    <div class="phase-desc">Бренд-платформа &mdash; смысловая основа всего проекта. Суть бренда, миссия, ценности, позиционирование, аудитория, тон голоса и визуальные принципы.</div>
+    <div class="phase-includes">
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Бренд-платформа (финальный документ)
+      </div>
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Прикладные выводы для команды
+      </div>
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Веб-презентация платформы
+      </div>
+    </div>
+  </div>
+  <div class="phase-price">
+    <div class="phase-price-num">700 <span class="phase-price-cur">€</span></div>
+    <div class="phase-price-note">фиксированно</div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase" id="p2">
+  <div class="phase-num">02</div>
+  <div class="phase-body">
+    <div class="phase-status">Следующий этап</div>
+    <div class="phase-title">Айдентика</div>
+    <div class="phase-desc">Визуальная концепция на основе утверждённой платформы. Логотип, цветовая палитра, типографика и базовые правила применения.</div>
+    <div class="phase-includes">
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Оценка и донастройка логотипа SO
+      </div>
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Цветовая палитра + типографика
+      </div>
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Базовые правила применения
+      </div>
+    </div>
+  </div>
+  <div class="phase-price">
+    <div class="phase-price-num">1 100 <span class="phase-price-cur">€</span></div>
+    <div class="phase-price-note">фиксированно</div>
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase" id="p3">
+  <div class="phase-num">03</div>
+  <div class="phase-body">
+    <div class="phase-status">Планируется</div>
+    <div class="phase-title">Применение</div>
+    <div class="phase-desc">Разработка носителей на основе утверждённой айдентики. Меню, шаблоны для соцсетей, сайт, базовые брендированные элементы.</div>
+    <div class="phase-includes">
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Меню и полиграфия
+      </div>
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Шаблоны для соцсетей
+      </div>
+      <div class="phase-include-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="1,7 5,11 13,2" stroke="#b8894a" stroke-width="1.4" fill="none"/></svg>
+        Сайт и базовые носители
+      </div>
+    </div>
+  </div>
+  <div class="phase-price">
+    <div class="phase-price-num">1 400 <span class="phase-price-cur">€</span></div>
+    <div class="phase-price-note">от</div>
+  </div>
+</div>
+
+<!-- TOTAL -->
+<div class="total-bar" id="total">
+  <div class="total-bar-left">
+    <div class="total-bar-label">Условия работы</div>
+    <p class="total-bar-text">
+      Фиксированная цена за каждый этап. Каждый этап начинается только после утверждения предыдущего. Rollout &mdash; внедрение и сопровождение &mdash; обсуждается отдельно по факту.
+    </p>
+  </div>
+  <div class="total-bar-right">
+    <div class="total-bar-sublabel">Итого по проекту</div>
+    <div class="total-bar-num">3 200 <em>€</em></div>
+  </div>
+</div>
+
+
+<footer>
+  <div class="footer-logo">S&middot;O Milano</div>
+  <div class="footer-meta">Коммерческое предложение &middot; 2026</div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.phase, .total-bar, .note');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  items.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
