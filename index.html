@@ -98,7 +98,7 @@
   /* CARDS */
   .cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     background: transparent;
     opacity: 0;
@@ -234,7 +234,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    .cards { grid-template-columns: repeat(2, 1fr); }
+    .cards { grid-template-columns: 1fr; }
     .card { min-height: 260px; }
   }
   @media (max-width: 540px) {
@@ -299,21 +299,6 @@
       <div class="card-body">
         <div class="card-title">Применение</div>
         <div class="card-desc">Меню, соцсети, сайт, шаблоны, базовые носители.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
-        Скоро
-      </div>
-    </a>
-
-    <a class="card pending" href="rollout.html">
-      <div>
-        <div class="card-num">04</div>
-        <div class="card-status">Планируется</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Внедрение</div>
-        <div class="card-desc">Внедрение и сопровождение.</div>
       </div>
       <div class="card-arrow">
         <div class="card-arrow-line"></div>
