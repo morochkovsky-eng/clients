@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВНЖ Digital Nomad — Тарифы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f3ef;
+    --surface: #ffffff;
+    --border: #dedad4;
+    --text: #1a1a1a;
+    --muted: #4a4845;
+    --accent: #2a5c3f;
+    --accent2: #3a7a55;
+    --tag: #eceae5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 0 80px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 52px 24px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(32px, 7vw, 40px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .hero h1 span {
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    margin-top: 16px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 340px;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    padding: 32px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* TARIFF CARDS */
+  .tariff-list {
+    padding: 0 24px;
+  }
+
+  .tariff {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tariff.highlight {
+    border-color: var(--accent2);
+  }
+
+  .tariff-head {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tariff-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: #ffffff;
+    background: var(--accent);
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tariff-price-block {
+    padding: 18px 20px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .price-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .price-line {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .price-line strong {
+    font-weight: 700;
+  }
+
+  .price-line.main strong {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(24px, 7vw, 30px);
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  /* TARIFF DESCRIPTION */
+  .tariff-desc {
+    padding: 16px 20px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* INCLUDES */
+  .tariff-includes {
+    padding: 16px 20px;
+  }
+
+  .includes-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .include-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .include-item::before {
+    content: '•';
+    color: var(--accent);
+    font-family: 'IBM Plex Sans', sans-serif;
+    flex-shrink: 0;
+    font-size: 18px;
+    margin-top: -1px;
+  }
+
+  .include-item.extra {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* EXTRA COSTS */
+  .tariff-extra {
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+    padding-top: 16px;
+  }
+
+  .extra-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .extra-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .extra-item::before {
+    content: '•';
+    color: var(--accent);
+    font-family: 'IBM Plex Sans', sans-serif;
+    flex-shrink: 0;
+    font-size: 18px;
+    margin-top: -1px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 24px;
+  }
+
+  /* CONSULT BLOCK */
+  .consult-block {
+    margin: 0 24px;
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin-top: 20px;
+  }
+
+  .consult-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .consult-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .consult-text {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 10px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* CONSULATE SECTION */
+  .consulate-block {
+    margin: 24px 24px 0;
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .consulate-warn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .consulate-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .consulate-text {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .consulate-prices {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 16px;
+  }
+
+  .cp-cell {
+    background: var(--bg);
+    padding: 16px 14px;
+  }
+
+  .cp-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cp-price {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+
+  .cp-family {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* GROUP DISCOUNT */
+  .group-block {
+    margin: 24px 24px 0;
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .discount-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 16px;
+  }
+
+  .discount-row:last-child {
+    border-bottom: none;
+  }
+
+  .discount-condition {
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .discount-value {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--accent);
+  }
+
+  /* COLLAPSE TOGGLE */
+  .toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  .toggle-icon {
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.2s;
+    color: var(--accent);
+  }
+
+  .toggle[aria-expanded="true"] .toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .collapsible {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+
+  .collapsible.open {
+    max-height: 9999px;
+  }
+
+  @media (min-width: 900px) {
+    .page {
+      max-width: 1100px;
+      padding: 0 40px 80px;
+    }
+
+    .hero {
+      padding: 64px 0 48px;
+    }
+
+    .hero-sub {
+      max-width: 520px;
+    }
+
+    .section-header {
+      padding: 40px 0 24px;
+    }
+
+    .tariff-list {
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .tariff {
+      margin-top: 0;
+    }
+
+    .consult-block {
+      margin: 24px 0 0;
+      max-width: 100%;
+    }
+
+    .consulate-block {
+      margin: 24px 0 0;
+    }
+
+    .group-block {
+      margin: 24px 0 0;
+      max-width: 100%;
+    }
+
+    .divider {
+      margin: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Испания / Spain</div>
+    <h1>ВНЖ<br><span>Digital</span><br>Nomad</h1>
+    <p class="hero-sub">Трёхлетний вид на жительство. Три тарифа — от самостоятельной сборки до полного сопровождения.</p>
+  </div>
+
+  <!-- SECTION 01 — INSIDE SPAIN -->
+  <div class="section-header">
+    <div class="section-num">01 — Подача изнутри Испании</div>
+    <div class="section-title">Как это работает</div>
+    <p class="section-desc">Для такой подачи вам необходимо сделать Шенген любой страны и прилететь в Испанию. Мы подадим вас сразу на трёхлетний испанский ВНЖ, минуя получение визы цифрового кочевника в консульстве.<br><br>Это самый простой способ получения ВНЖ — рассмотрение внутри Испании достаточно быстрое. Шенген может быть любым по сроку и стране. Главное — оказаться в рамках его действия на территории Испании для загрузки ваших документов.</p>
+  </div>
+
+  <!-- TARIFFS -->
+  <div class="tariff-list">
+
+    <!-- TARIFF 1: СОПРОВОЖДЕНИЕ -->
+    <div class="tariff">
+      <div class="tariff-head">
+        <div class="tariff-name">Сопровождение</div>
+      </div>
+      <div class="tariff-price-block">
+        <div class="price-label">Стоимость</div>
+        <div class="price-line main"><strong>1 690 евро</strong> основной заявитель</div>
+        <div class="price-line"><strong>+ 990 евро</strong> член семьи</div>
+      </div>
+      <div class="tariff-desc">
+        Вы самостоятельно собираете пакет документов по подробным инструкциям. Мы проверяем, подаём и следим за статусом.
+      </div>
+
+      <div class="tariff-includes">
+        <div class="includes-title">Что включено</div>
+        <div class="include-item">Подробные инструкции по каждому документу</div>
+        <div class="include-item">Чек-листы и гайды по всему процессу</div>
+        <div class="include-item">Чат с персональным менеджером</div>
+        <div class="include-item">Формирование квитанции для оплаты пошлины</div>
+        <div class="include-item">Полная двойная проверка документов перед подачей</div>
+        <div class="include-item">Загрузка документов в систему с ЭЦП</div>
+        <div class="include-item">Обработка дозапросов и коммуникация с проверяющим органом</div>
+      </div>
+
+      <button class="toggle" onclick="toggleSection(this)" aria-expanded="false">
+        Дополнительные затраты
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="collapsible">
+        <div class="tariff-extra">
+          <div class="extra-item">Госпошлина за подачу — 73,26 €</div>
+          <div class="extra-item">Присяжные переводы документов</div>
+          <div class="extra-item">Медицинская страховка (только при подаче с трудовым договором)</div>
+          <div class="extra-item">Апостили и оригиналы документов из страны происхождения</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARIFF 2: VIP -->
+    <div class="tariff highlight">
+      <div class="tariff-head">
+        <div class="tariff-name">VIP</div>
+        <div class="tariff-badge">Хит</div>
+      </div>
+      <div class="tariff-price-block">
+        <div class="price-label">Стоимость</div>
+        <div class="price-line main"><strong>2 190 евро</strong> основной заявитель</div>
+        <div class="price-line"><strong>+ 1 390 евро</strong> член семьи</div>
+      </div>
+      <div class="tariff-desc">
+        Вы передаёте оригиналы документов — мы делаем всё остальное: формы, переводы, пошлина, подача, отпечатки пальцев и получение карточки.
+      </div>
+
+      <div class="tariff-includes">
+        <div class="includes-title">Что включено</div>
+        <div class="include-item">Всё из тарифа «Сопровождение»</div>
+        <div class="include-item">Заполнение всех испанских форм и деклараций</div>
+        <div class="include-item">Написание объяснительных писем на испанском</div>
+        <div class="include-item">Формирование полного комплекта документов</div>
+        <div class="include-item">Оплата госпошлины в испанском банке</div>
+        <div class="include-item">Переводы документов, где допустим самостоятельный перевод</div>
+        <div class="include-item">Поиск присяжного переводчика и заказ переводов</div>
+        <div class="include-item">Запись на сдачу отпечатков пальцев после одобрения</div>
+        <div class="include-item">Подготовка анкет для сдачи отпечатков</div>
+        <div class="include-item">Сопровождение до получения карточки ВНЖ</div>
+      </div>
+
+      <button class="toggle" onclick="toggleSection(this)" aria-expanded="false">
+        Дополнительные затраты
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="collapsible">
+        <div class="tariff-extra">
+          <div class="extra-item">Присяжные переводы документов</div>
+          <div class="extra-item">Медицинская страховка (только при подаче с трудовым договором)</div>
+          <div class="extra-item">Апостили и оригиналы документов из страны происхождения</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARIFF 3: ПЛАТИНА -->
+    <div class="tariff">
+      <div class="tariff-head">
+        <div class="tariff-name">Платина</div>
+      </div>
+      <div class="tariff-price-block">
+        <div class="price-label">Стоимость</div>
+        <div class="price-line main"><strong>3 790 евро</strong> основной заявитель</div>
+        <div class="price-line"><strong>+ 2 190 евро</strong> член семьи</div>
+      </div>
+      <div class="tariff-desc">
+        Максимальное погружение. Присяжные переводы оплачиваются в рамках тарифа. Включена налоговая консультация и подбор страховки.
+      </div>
+
+      <div class="tariff-includes">
+        <div class="includes-title">Что включено</div>
+        <div class="include-item">Всё из тарифа «VIP»</div>
+        <div class="include-item extra">Оплата присяжных переводов (до 900 € осн. / до 400 € член семьи)</div>
+        <div class="include-item extra">Персональная налоговая консультация со специалистом</div>
+        <div class="include-item extra">Подбор медицинской страховки и общение со страховым агентом</div>
+        <div class="include-item extra">Часовая консультация по стратегии подачи</div>
+        <div class="include-item">Коммуникация со всеми сторонними посредниками по вашему кейсу</div>
+      </div>
+
+      <button class="toggle" onclick="toggleSection(this)" aria-expanded="false">
+        Дополнительные затраты
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="collapsible">
+        <div class="tariff-extra">
+          <div class="extra-item">Медицинская страховка (только при подаче с трудовым договором)</div>
+          <div class="extra-item">Апостили и оригиналы документов из страны происхождения</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONSULT -->
+  <div class="consult-block">
+    <div class="consult-label">Не знаете с чего начать?</div>
+    <div class="consult-price">€ 100</div>
+    <div class="consult-text">
+      Индивидуальная консультация — <strong>50 минут</strong>. Разберём ваш кейс, составим стратегию подачи и выберем оптимальный формат.<br><br>
+      Если после консультации вы переходите к сопровождению — её стоимость <strong>вычитается из тарифа</strong>.
+    </div>
+  </div>
+
+  <!-- SECTION 02 — CONSULATE -->
+  <div class="section-header" style="margin-top: 32px;">
+    <div class="section-num">02 — Подача из консульства</div>
+    <div class="section-title">Для тех, кто не может приехать сразу</div>
+    <p class="section-desc">Оформляем годовую визу цифрового кочевника в Москве, а по истечении срока — подаём на трёхлетний ВНЖ изнутри Испании. Этот путь сложнее и дороже — рекомендуем только при многократных отказах в Шенгене.</p>
+  </div>
+
+  <div class="consulate-block">
+    <div class="consulate-warn">Цены для пакета: виза + ВНЖ</div>
+    <div class="consulate-prices">
+      <div class="cp-cell">
+        <div class="cp-name">Сопров.</div>
+        <div class="cp-price">€ 2 690</div>
+        <div class="cp-family">+ € 990 / семья</div>
+      </div>
+      <div class="cp-cell">
+        <div class="cp-name">VIP</div>
+        <div class="cp-price">€ 3 390</div>
+        <div class="cp-family">+ € 1 390 / семья</div>
+      </div>
+      <div class="cp-cell">
+        <div class="cp-name">Платина</div>
+        <div class="cp-price">€ 5 290</div>
+        <div class="cp-family">+ € 2 190 / семья</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 — GROUP -->
+  <div class="section-header" style="margin-top: 32px;">
+    <div class="section-num">03 — Групповые скидки</div>
+    <div class="section-title">Переезжаете вместе?</div>
+    <p class="section-desc">Скидка действует на любой тариф при групповой подаче.</p>
+  </div>
+
+  <div class="group-block">
+    <div class="discount-row">
+      <div class="discount-condition">2 основных заявителя</div>
+      <div class="discount-value">−5%</div>
+    </div>
+    <div class="discount-row">
+      <div class="discount-condition">3–4 основных заявителя</div>
+      <div class="discount-value">−10%</div>
+    </div>
+    <div class="discount-row">
+      <div class="discount-condition">5 и более</div>
+      <div class="discount-value">−15%</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleSection(btn) {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !expanded);
+    const content = btn.nextElementSibling;
+    content.classList.toggle('open', !expanded);
+  }
+</script>
+</body>
+</html>
