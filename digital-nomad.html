@@ -6,7 +6,7 @@
 <title>ВНЖ Digital Nomad — Тарифы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;700&family=Instrument+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f5f3ef;
@@ -24,7 +24,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-weight: 400;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -104,6 +104,7 @@
   /* TARIFF CARDS */
   .tariff-list {
     padding: 0 24px;
+    display: block;
   }
 
   .tariff {
@@ -112,6 +113,7 @@
     background: var(--surface);
     position: relative;
     overflow: hidden;
+    border-radius: 4px;
   }
 
   .tariff.highlight {
@@ -134,14 +136,20 @@
     letter-spacing: 0.01em;
     color: var(--text);
     text-transform: uppercase;
+  }
+
+  .tariff-badge {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    color: #ffffff;
-    background: var(--accent);
-    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    background: transparent;
+    border: 2px solid var(--accent);
+    padding: 4px 10px;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 4px;
+    text-transform: uppercase;
   }
 
   .tariff-price-block {
@@ -160,7 +168,7 @@
   }
 
   .price-line {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 18px;
     line-height: 1.5;
     color: var(--text);
@@ -211,7 +219,7 @@
     gap: 10px;
     margin-bottom: 10px;
     font-size: 16px;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     color: var(--text);
     line-height: 1.5;
   }
@@ -219,7 +227,7 @@
   .include-item::before {
     content: '•';
     color: var(--accent);
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     flex-shrink: 0;
     font-size: 18px;
     margin-top: -1px;
@@ -252,7 +260,7 @@
     gap: 10px;
     margin-bottom: 8px;
     font-size: 16px;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     color: var(--muted);
     line-height: 1.5;
   }
@@ -260,7 +268,7 @@
   .extra-item::before {
     content: '•';
     color: var(--accent);
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     flex-shrink: 0;
     font-size: 18px;
     margin-top: -1px;
@@ -279,6 +287,7 @@
     padding: 24px 20px;
     border: 1px solid var(--border);
     background: var(--surface);
+    border-radius: 4px;
     margin-top: 20px;
   }
 
@@ -315,6 +324,7 @@
     padding: 24px 20px;
     border: 1px solid var(--border);
     background: var(--surface);
+    border-radius: 4px;
   }
 
   .consulate-warn {
@@ -366,7 +376,7 @@
   }
 
   .cp-price {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: var(--accent);
@@ -374,7 +384,7 @@
   }
 
   .cp-family {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 15px;
     font-weight: 400;
     color: var(--muted);
@@ -387,6 +397,7 @@
     padding: 24px 20px;
     border: 1px solid var(--border);
     background: var(--surface);
+    border-radius: 4px;
   }
 
   .discount-row {
@@ -455,6 +466,181 @@
     max-height: 9999px;
   }
 
+  /* QUIZ */
+  .quiz-block {
+    margin: 0 24px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+
+  .quiz-head {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .quiz-head-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .quiz-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .quiz-progress {
+    height: 3px;
+    background: var(--border);
+  }
+
+  .quiz-progress-bar {
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  .quiz-step {
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .quiz-step.hidden { display: none; }
+
+  .quiz-q {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .quiz-btn {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 13px 16px;
+    text-align: left;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    line-height: 1.4;
+  }
+
+  .quiz-btn:hover { border-color: var(--accent); }
+
+  .quiz-btn.selected {
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .quiz-result {
+    padding: 24px 20px;
+  }
+
+  .quiz-result.hidden { display: none; }
+
+  .result-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .result-tariff {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin-bottom: 8px;
+  }
+
+  .result-price {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .result-desc {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .result-reasons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .result-reason {
+    display: flex;
+    gap: 10px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .result-reason::before {
+    content: '\u2022';
+    color: var(--accent);
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: -1px;
+  }
+
+  .quiz-reset {
+    background: none;
+    border: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .quiz-reset:hover { color: var(--accent); }
+
+
+
   @media (min-width: 900px) {
     .page {
       max-width: 1100px;
@@ -499,7 +685,7 @@
       max-width: 100%;
     }
 
-    .divider {
+    .quiz-block {
       margin: 0;
     }
   }
@@ -644,44 +830,6 @@
 
   </div>
 
-  <!-- CONSULT -->
-  <div class="consult-block">
-    <div class="consult-label">Не знаете с чего начать?</div>
-    <div class="consult-price">€ 100</div>
-    <div class="consult-text">
-      Индивидуальная консультация — <strong>50 минут</strong>. Разберём ваш кейс, составим стратегию подачи и выберем оптимальный формат.<br><br>
-      Если после консультации вы переходите к сопровождению — её стоимость <strong>вычитается из тарифа</strong>.
-    </div>
-  </div>
-
-  <!-- SECTION 02 — CONSULATE -->
-  <div class="section-header" style="margin-top: 32px;">
-    <div class="section-num">02 — Подача из консульства</div>
-    <div class="section-title">Для тех, кто не может приехать сразу</div>
-    <p class="section-desc">Оформляем годовую визу цифрового кочевника в Москве, а по истечении срока — подаём на трёхлетний ВНЖ изнутри Испании. Этот путь сложнее и дороже — рекомендуем только при многократных отказах в Шенгене.</p>
-  </div>
-
-  <div class="consulate-block">
-    <div class="consulate-warn">Цены для пакета: виза + ВНЖ</div>
-    <div class="consulate-prices">
-      <div class="cp-cell">
-        <div class="cp-name">Сопров.</div>
-        <div class="cp-price">€ 2 690</div>
-        <div class="cp-family">+ € 990 / семья</div>
-      </div>
-      <div class="cp-cell">
-        <div class="cp-name">VIP</div>
-        <div class="cp-price">€ 3 390</div>
-        <div class="cp-family">+ € 1 390 / семья</div>
-      </div>
-      <div class="cp-cell">
-        <div class="cp-name">Платина</div>
-        <div class="cp-price">€ 5 290</div>
-        <div class="cp-family">+ € 2 190 / семья</div>
-      </div>
-    </div>
-  </div>
-
   <!-- SECTION 03 — GROUP -->
   <div class="section-header" style="margin-top: 32px;">
     <div class="section-num">03 — Групповые скидки</div>
@@ -704,14 +852,173 @@
     </div>
   </div>
 
-</div>
+  <!-- SECTION 04 — QUIZ -->
+  <div class="section-header" style="margin-top: 32px;">
+    <div class="section-num">04 — Подбор тарифа</div>
+    <div class="section-title">Какой тариф вам подойдёт?</div>
+    <p class="section-desc">Ответьте на пять вопросов — получите персональную рекомендацию.</p>
+  </div>
 
+  <div class="quiz-block">
+
+    <div class="quiz-head">
+      <div class="quiz-head-title">Подбор</div>
+      <div class="quiz-num" id="quiz-counter">01 / 05</div>
+    </div>
+
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+    </div>
+
+    <div class="quiz-step" id="q1">
+      <div class="quiz-q">Готовы самостоятельно собирать документы по инструкциям?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="answer(1, 0, 'q2')">Да, разберусь сам — главное чтобы были чёткие инструкции</button>
+        <button class="quiz-btn" onclick="answer(1, 2, 'q2')">Нет, хочу передать сбор документов вам</button>
+      </div>
+    </div>
+
+    <div class="quiz-step hidden" id="q2">
+      <div class="quiz-q">Как насчёт испанских форм, деклараций и писем на испанском?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="answer(2, 0, 'q3')">Справлюсь или найду помощника — не критично</button>
+        <button class="quiz-btn" onclick="answer(2, 2, 'q3')">Хочу чтобы всё это тоже взяли на себя вы</button>
+      </div>
+    </div>
+
+    <div class="quiz-step hidden" id="q3">
+      <div class="quiz-q">Нужна ли помощь в получении документов, которых у вас пока нет — апостили, справки, выписки?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="answer(3, 0, 'q4')">Нет, все документы у меня уже есть</button>
+        <button class="quiz-btn" onclick="answer(3, 2, 'q4')">Да, нужна помощь в получении и оформлении ряда документов</button>
+      </div>
+    </div>
+
+    <div class="quiz-step hidden" id="q4">
+      <div class="quiz-q">Нужна ли помощь с присяжными переводами документов?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="answer(4, 0, 'q5')">Нет, сам найду переводчика и оплачу отдельно</button>
+        <button class="quiz-btn" onclick="answer(4, 2, 'q5')">Да, хочу чтобы переводы были включены в стоимость</button>
+      </div>
+    </div>
+
+    <div class="quiz-step hidden" id="q5">
+      <div class="quiz-q">Нужны ли вам налоговая консультация и подбор медицинской страховки?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="answer(5, 0, 'result')">Нет, с этим разберусь самостоятельно</button>
+        <button class="quiz-btn" onclick="answer(5, 2, 'result')">Да, хочу консультацию специалиста и помощь со страховкой</button>
+      </div>
+    </div>
+
+    <div class="quiz-result hidden" id="qresult">
+      <div class="result-label">Ваш тариф</div>
+      <div class="result-tariff" id="result-name"></div>
+      <div class="result-price" id="result-price"></div>
+      <div class="result-desc" id="result-desc"></div>
+      <div class="result-reasons" id="result-reasons"></div>
+      <button class="quiz-reset" onclick="resetQuiz()">← Ответить заново</button>
+    </div>
+
+  </div>
+
+</div>
 <script>
   function toggleSection(btn) {
     const expanded = btn.getAttribute('aria-expanded') === 'true';
     btn.setAttribute('aria-expanded', !expanded);
     const content = btn.nextElementSibling;
     content.classList.toggle('open', !expanded);
+  }
+
+  let score = 0;
+  const total = 5;
+
+  function answer(step, pts, next) {
+    document.querySelectorAll(`#q${step} .quiz-btn`).forEach(b => b.classList.remove('selected'));
+    event.target.classList.add('selected');
+    score += pts;
+
+    const pct = (step / total) * 100;
+    document.getElementById('quiz-progress-bar').style.width = pct + '%';
+
+    setTimeout(() => {
+      document.getElementById('q' + step).classList.add('hidden');
+      if (next === 'result') {
+        showResult();
+      } else {
+        const nextNum = parseInt(next.replace('q',''));
+        document.getElementById('quiz-counter').textContent =
+          String(nextNum).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+        document.getElementById(next).classList.remove('hidden');
+      }
+    }, 220);
+  }
+
+  function showResult() {
+    document.getElementById('quiz-progress-bar').style.width = '100%';
+    document.getElementById('quiz-counter').textContent = '✓';
+
+    let key;
+    if (score <= 1)      key = 'soprovojdenie';
+    else if (score <= 4) key = 'vip';
+    else                 key = 'platina';
+
+    const data = {
+      soprovojdenie: {
+        name: 'Сопровождение',
+        price: '1 690 евро / основной заявитель',
+        desc: 'Вы готовы самостоятельно разобраться в процессе — это оптимальный выбор. Собираете документы по нашим инструкциям, мы проверяем, подаём и следим за статусом.',
+        reasons: [
+          'Подробные инструкции и чек-листы по каждому документу',
+          'Чат с персональным менеджером на всём пути',
+          'Двойная проверка документов перед подачей',
+          'Загрузка в систему с ЭЦП и контроль статуса заявки',
+        ]
+      },
+      vip: {
+        name: 'VIP',
+        price: '2 190 евро / основной заявитель',
+        desc: 'Вы передаёте оригиналы — мы берём на себя формы, переводы, пошлину, подачу и сопровождаем до получения карточки ВНЖ.',
+        reasons: [
+          'Заполнение всех испанских форм и деклараций',
+          'Написание объяснительных писем на испанском',
+          'Поиск присяжного переводчика и заказ переводов',
+          'Оплата госпошлины и запись на отпечатки пальцев',
+          'Сопровождение до получения карточки ВНЖ',
+        ]
+      },
+      platina: {
+        name: 'Платина',
+        price: '3 790 евро / основной заявитель',
+        desc: 'Максимальный формат под ключ — вы просто передаёте документы. Переводы, налоговая консультация и страховка включены в стоимость.',
+        reasons: [
+          'Всё из тарифа VIP',
+          'Присяжные переводы включены (до 900 € для основного заявителя)',
+          'Помощь в получении документов, которых нет на руках',
+          'Персональная налоговая консультация со специалистом',
+          'Подбор медицинской страховки и общение со страховым агентом',
+          'Часовая консультация по стратегии подачи',
+        ]
+      }
+    };
+
+    const r = data[key];
+    document.getElementById('result-name').textContent = r.name;
+    document.getElementById('result-price').textContent = r.price;
+    document.getElementById('result-desc').textContent = r.desc;
+    document.getElementById('result-reasons').innerHTML =
+      r.reasons.map(t => `<div class="result-reason">${t}</div>`).join('');
+    document.getElementById('qresult').classList.remove('hidden');
+  }
+
+  function resetQuiz() {
+    score = 0;
+    document.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.add('hidden'));
+    document.getElementById('qresult').classList.add('hidden');
+    document.getElementById('quiz-progress-bar').style.width = '0%';
+    document.getElementById('quiz-counter').textContent = '01 / 05';
+    document.getElementById('q1').classList.remove('hidden');
   }
 </script>
 </body>
