@@ -6,192 +6,242 @@
 <title>SO Milano — Айдентика</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0f0f0d;
-    --off-white: #f7f5f0;
-    --light-gray: #e8e5df;
-    --accent: #b8894a;
-    --accent-light: #f0e8d8;
-    --text: #1a1916;
-    --text-secondary: #6b6860;
+    --night:  #1E1A16;
+    --coal:   #3A2E28;
+    --ash:    #A89278;
+    --ochre:  #D4B84A;
+    --chianti:#8B2635;
+    --dust:   #F0E8DF;
   }
+
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--off-white);
-    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    background: var(--dust);
+    color: var(--coal);
     overflow-x: hidden;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
     -webkit-font-smoothing: antialiased;
   }
+
+  /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
     padding: 20px 6vw;
-    transition: background 0.4s ease;
+    transition: background 0.4s;
   }
-  nav.scrolled {
-    background: rgba(15,15,13,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
+  nav.scrolled { background: rgba(30,26,22,0.95); backdrop-filter: blur(12px); }
   .nav-back {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; opacity: 0.5; transition: opacity 0.3s;
   }
   .nav-back:hover { opacity: 1; }
-  .nav-back span {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(247,245,240,0.8);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--off-white);
-  }
-  .nav-tag {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(247,245,240,0.4);
-  }
+  .nav-back span { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dust); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.1em; color: var(--dust); }
+  .nav-tag { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(240,232,223,0.4); }
+
+  /* HERO */
   .hero {
     min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 6vw 8vh;
-    position: relative;
-    overflow: hidden;
-    background: var(--black);
+    background: var(--chianti);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 6vw 10vh;
+    position: relative; overflow: hidden;
   }
   .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(184,137,74,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(184,137,74,0.06) 0%, transparent 50%);
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 70% 20%, rgba(139,38,53,0.6) 0%, rgba(30,26,22,0.9) 100%);
   }
   .hero-label {
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeUp 0.8s ease 0.3s forwards;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ochre); margin-bottom: 24px; position: relative;
+    opacity: 0; transform: translateY(10px); animation: up 0.7s ease 0.3s forwards;
   }
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(72px, 14vw, 160px);
-    font-weight: 300;
-    line-height: 0.92;
-    color: var(--off-white);
-    letter-spacing: -0.02em;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 1s ease 0.5s forwards;
+    font-size: clamp(64px, 13vw, 148px); font-weight: 300;
+    line-height: 0.9; letter-spacing: -0.02em; color: var(--dust);
+    position: relative;
+    opacity: 0; transform: translateY(20px); animation: up 1s ease 0.5s forwards;
   }
-  .wip {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 6vw;
+  .hero-title em { font-style: italic; color: var(--ochre); }
+  .hero-sub {
+    margin-top: 28px; font-size: 14px; font-weight: 300;
+    color: rgba(240,232,223,0.55); max-width: 480px; line-height: 1.7;
+    position: relative;
+    opacity: 0; transform: translateY(10px); animation: up 0.7s ease 0.9s forwards;
+  }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* SECTION */
+  .section { padding: 100px 6vw; }
+  .section-dark { background: var(--night); }
+  .section-coal { background: var(--coal); }
+  .section-chianti { background: var(--chianti); }
+
+  .section-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--chianti); margin-bottom: 20px; }
+  .section-dark .section-label,
+  .section-coal .section-label,
+  .section-chianti .section-label { color: var(--ochre); }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 66px); font-weight: 300;
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 44px;
+    color: var(--coal);
+  }
+  .section-dark .section-title,
+  .section-coal .section-title,
+  .section-chianti .section-title { color: var(--dust); }
+  .section-title em { font-style: italic; color: var(--chianti); }
+  .section-dark .section-title em,
+  .section-chianti .section-title em { color: var(--ochre); }
+
+  .divider { width: 44px; height: 1px; background: var(--chianti); margin-bottom: 44px; }
+  .section-dark .divider,
+  .section-chianti .divider { background: rgba(212,184,74,0.4); }
+
+  .body-text { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--ash); max-width: 620px; }
+  .section-dark .body-text,
+  .section-chianti .body-text { color: rgba(240,232,223,0.55); }
+  .body-text + .body-text { margin-top: 16px; }
+
+  /* PLACEHOLDER */
+  .placeholder {
+    width: 100%; background: rgba(0,0,0,0.06);
+    border: 1px dashed rgba(0,0,0,0.15);
+    border-radius: 4px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px; color: rgba(0,0,0,0.3);
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .section-dark .placeholder,
+  .section-chianti .placeholder {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.2);
+  }
+  .placeholder svg { opacity: 0.3; }
+
+  /* QUOTE */
+  .pull-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 30px); font-weight: 300; font-style: italic;
+    line-height: 1.4; color: var(--dust);
+    border-left: 3px solid var(--ochre);
+    padding-left: 24px; margin: 40px 0;
+    max-width: 680px;
+  }
+
+  /* LOGO VERSIONS GRID */
+  .logo-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; background: rgba(58,46,40,0.1);
+    margin-top: 48px;
+  }
+  .logo-cell {
+    background: var(--dust);
+    padding: 40px 24px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 20px;
+  }
+  .logo-cell-placeholder {
+    width: 100%; aspect-ratio: 1;
+    max-width: 120px;
+  }
+  .logo-cell-label {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ash); text-align: center;
+  }
+
+  /* CITIES */
+  .cities-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; margin-top: 48px;
+  }
+  .city-cell { aspect-ratio: 3/4; position: relative; overflow: hidden; }
+  .city-cell-placeholder { width: 100%; height: 100%; }
+  .city-cell-label {
+    position: absolute; bottom: 24px; left: 0; right: 0;
     text-align: center;
-    gap: 32px;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(240,232,223,0.5);
   }
-  .wip-icon {
-    opacity: 0.25;
+
+  /* PALETTE STRIP */
+  .palette-strip {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 2px; margin-top: 44px;
   }
-  .wip-label {
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
+  .swatch { display: flex; flex-direction: column; }
+  .swatch-color { height: 120px; }
+  .swatch-info { padding: 12px 0 0; }
+  .swatch-name { font-size: 12px; font-weight: 400; color: var(--dust); margin-bottom: 3px; }
+  .swatch-hex { font-size: 10px; color: rgba(240,232,223,0.45); letter-spacing: 0.05em; }
+
+  /* TYPOGRAPHY */
+  .type-block {
+    margin-top: 44px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: rgba(58,46,40,0.06);
   }
-  .wip-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 300;
-    color: var(--text);
-    letter-spacing: -0.01em;
+  .type-cell { background: var(--dust); padding: 40px 36px; }
+  .type-display {
+    font-size: clamp(36px, 5vw, 60px); line-height: 1.1;
+    margin-bottom: 20px;
   }
-  .wip-text {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--text-secondary);
-    max-width: 440px;
+  .type-tag {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ash); margin-bottom: 12px;
   }
-  .wip-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(184,137,74,0.3);
-    padding: 12px 24px;
-    margin-top: 8px;
-    transition: background 0.3s ease, border-color 0.3s ease;
+  .type-desc { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--ash); }
+
+  /* MENU MOCKUP */
+  .mockup-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; margin-top: 48px;
   }
-  .wip-back:hover {
-    background: var(--accent-light);
-    border-color: var(--accent);
+  .mockup-cell { position: relative; overflow: hidden; }
+  .mockup-cell-placeholder { width: 100%; aspect-ratio: 4/3; }
+  .mockup-cell.tall .mockup-cell-placeholder { aspect-ratio: 3/4; }
+
+  /* COLLAB */
+  .collab-block {
+    margin-top: 48px; padding: 60px;
+    background: var(--ash);
+    display: flex; flex-direction: column;
+    align-items: center; gap: 32px; text-align: center;
   }
+  .collab-placeholder { width: 100%; height: 400px; }
+
+  /* FOOTER */
   footer {
-    padding: 32px 6vw;
-    border-top: 1px solid var(--light-gray);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
+    background: var(--night); padding: 36px 6vw;
+    border-top: 1px solid rgba(240,232,223,0.06);
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 12px;
   }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
-  }
-  .footer-meta {
-    font-size: 11px;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-    opacity: 0.5;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (max-width: 540px) {
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 0.1em; color: rgba(240,232,223,0.3); }
+  .footer-meta { font-size: 11px; color: rgba(240,232,223,0.18); letter-spacing: 0.05em; }
+
+  @keyframes up { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    .section { padding: 80px 5vw; }
+    .logo-grid { grid-template-columns: repeat(2, 1fr); }
+    .cities-grid { grid-template-columns: 1fr; }
+    .palette-strip { grid-template-columns: repeat(3, 1fr); }
+    .type-block { grid-template-columns: 1fr; }
+    .mockup-grid { grid-template-columns: 1fr; }
     nav { padding: 16px 5vw; }
-    .wip { padding: 80px 5vw; }
-    footer { padding: 24px 5vw; }
   }
 </style>
 </head>
@@ -199,33 +249,147 @@
 
 <nav id="nav">
   <a class="nav-back" href="index.html">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="10,2 4,8 10,14" stroke="#f7f5f0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <polyline points="10,2 4,8 10,14" stroke="#f0e8df" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     <span>Все фазы</span>
   </a>
   <div class="nav-logo">S&middot;O</div>
-  <div class="nav-tag">Айдентика NAVTAGmiddot; Фаза 02</div>
+  <div class="nav-tag">Айдентика &middot; Фаза 02</div>
 </nav>
 
-<section class="wip">
-  <div class="wip-icon">
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="46" height="46" rx="2" stroke="#b8894a" stroke-width="1.5"/>
-      <line x1="14" y1="24" x2="34" y2="24" stroke="#b8894a" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="24" y1="14" x2="24" y2="34" stroke="#b8894a" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  </div>
-  <div class="wip-label">Айдентика &mdash; В разработке</div>
-  <div class="wip-title">Этот раздел<br>готовится</div>
-  <p class="wip-text">Визуальная концепция, логотип, цвет и типографика разрабатываются на основе утверждённой бренд-платформы.</p>
-  <a class="wip-back" href="index.html">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polyline points="8,1 3,6 8,11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Вернуться к бренд-системе
-  </a>
+<!-- ─── HERO ─────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-label">SO Milano &middot; Айдентика</div>
+  <h1 class="hero-title">Visual<br><em>Identity</em></h1>
+  <p class="hero-sub">Логотип, система именования, цвет, типографика. Визуальный язык бренда, построенный на основе утверждённой стратегии.</p>
 </section>
+
+<!-- ─── 01 ЗАДАЧА ─────────────────────────────────────────────────────────── -->
+<section class="section reveal" id="s01">
+  <div class="section-label">01 &mdash; Задача</div>
+  <h2 class="section-title">Не сломать.<br>Уточнить.</h2>
+  <div class="divider"></div>
+  <p class="body-text">В рамках работы над бренд-платформой была определена новая стратегическая позиция SO Milano — ресторан и кальянный лаунж, где сильная кухня, вечерняя атмосфера и ритуал кальяна существуют без жанровых клише.</p>
+  <p class="body-text">На основе этой платформы потребовалось обновить знак: сохранить узнаваемую форму, которую аудитория уже знает, и привести его в соответствие с новым видением — более тонким, уверенным и масштабируемым.</p>
+
+  <!-- Слайд: логотип на кьянти фоне -->
+  <div class="reveal" style="margin-top: 48px; border-radius: 8px; overflow: hidden;">
+    <img src="img_pres_logo/01-SO Milano_logo.jpg" alt="SO Milano логотип" style="width:100%; height:auto; display:block;">
+  </div>
+</section>
+
+<!-- ─── 02 КОНЦЕПЦИЯ ──────────────────────────────────────────────────────── -->
+
+<!-- ─── 03 СИСТЕМА ИМЕНОВАНИЯ ─────────────────────────────────────────────── -->
+<section class="section reveal" id="s03">
+  <div class="section-label">03 &mdash; Система именования</div>
+  <h2 class="section-title">Один знак.<br>Четыре версии.</h2>
+  <div class="divider"></div>
+  <p class="body-text">Раньше заведение называлось SO Milano — и это имя работало как единое целое, без возможности роста. Теперь логотип это система: каждая версия решает свою задачу и используется в своём контексте.</p>
+
+  <!-- 4 версии логотипа -->
+  <div class="logo-grid reveal">
+    <div class="logo-cell">
+      <img src="img_pres_logo/03-1.png" alt="Монограмма SO" style="width:100%; max-width:180px; height:auto; display:block;">
+      <div class="logo-cell-label">Монограмма</div>
+    </div>
+    <div class="logo-cell">
+      <img src="img_pres_logo/03-2.png" alt="Монограмма + формат" style="width:100%; max-width:180px; height:auto; display:block;">
+      <div class="logo-cell-label">Монограмма + формат</div>
+    </div>
+    <div class="logo-cell">
+      <img src="img_pres_logo/03-3.png" alt="Монограмма + город" style="width:100%; max-width:180px; height:auto; display:block;">
+      <div class="logo-cell-label">Монограмма + город</div>
+    </div>
+    <div class="logo-cell">
+      <img src="img_pres_logo/03-4.png" alt="Полный логотип" style="width:100%; max-width:180px; height:auto; display:block;">
+      <div class="logo-cell-label">Полный логотип</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 ЦВЕТ ───────────────────────────────────────────────────────────── -->
+<section class="section section-dark reveal" id="s04">
+  <div class="section-label">04 &mdash; Фирменные цвета</div>
+  <h2 class="section-title">Палитра</h2>
+  <div class="divider"></div>
+  <p class="body-text">Палитра SO строится на двух образах, которые живут в самом продукте: свет и дым. Каждый оттенок считывается и на светлом носителе, и на тёмном, и работает в обоих режимах заведения.</p>
+
+
+  <div class="palette-strip reveal" style="margin-top: 48px;">
+    <div class="swatch">
+      <div class="swatch-color" style="background: var(--dust); border: 0.5px solid rgba(240,232,223,0.15);"></div>
+      <div class="swatch-info"><div class="swatch-name">Зола</div><div class="swatch-hex">#F0E8DF</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: var(--ochre);"></div>
+      <div class="swatch-info"><div class="swatch-name">Охра</div><div class="swatch-hex">#D4B84A</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: var(--chianti);"></div>
+      <div class="swatch-info"><div class="swatch-name">Кьянти</div><div class="swatch-hex">#8B2635</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: var(--ash);"></div>
+      <div class="swatch-info"><div class="swatch-name">Пепел</div><div class="swatch-hex">#A89278</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: var(--coal);"></div>
+      <div class="swatch-info"><div class="swatch-name">Уголь</div><div class="swatch-hex">#3A2E28</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: var(--night); border: 0.5px solid rgba(240,232,223,0.08);"></div>
+      <div class="swatch-info"><div class="swatch-name">Ночь</div><div class="swatch-hex">#1E1A16</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 05 ТИПОГРАФИКА ────────────────────────────────────────────────────── -->
+<section class="section reveal" id="s05">
+  <div class="section-label">05 &mdash; Типографика</div>
+  <h2 class="section-title">Шрифтовая<br>пара</h2>
+  <div class="divider"></div>
+  <p class="body-text">Выбор шрифтов строился от характера. Нужна была пара, которая работает вместе как система — и при этом разговаривает с логотипом и палитрой на одном языке.</p>
+
+  <div class="type-block reveal">
+    <div class="type-cell">
+      <div class="type-tag">Заголовочный</div>
+      <div class="type-display" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; color: var(--coal);">Cormorant Garamond</div>
+      <p class="type-desc">Восходит к французско-итальянской типографской традиции XVI века. Высокий контраст штриха, каллиграфические засечки, выразительный курсив — всё это визуально рифмуется с природой логотипа SO.</p>
+    </div>
+    <div class="type-cell">
+      <div class="type-tag">Текстовый</div>
+      <div class="type-display" style="font-family: 'Lato', sans-serif; font-weight: 300; color: var(--coal);">Lato</div>
+      <p class="type-desc">Гротеск для текстовых блоков, подписей и интерфейсов. Нейтральный по характеру — не конкурирует с Cormorant, а держит систему. Обеспечивает читаемость в любом размере.</p>
+    </div>
+  </div>
+
+  <!-- Слайд типографики — охровый фон -->
+  <div class="reveal" style="margin-top: 48px; overflow: hidden; border-radius: 8px;">
+    <img src="img_pres_logo/05 SO Milano_fonts.jpg" alt="Типографика SO Milano" style="width:100%; height:auto; display:block;">
+  </div>
+</section>
+
+<!-- ─── 06 БРЕНД В ПРОСТРАНСТВЕ ───────────────────────────────────────────── -->
+<section class="section section-dark reveal" id="s06">
+  <div class="section-label">06 &mdash; Бренд в пространстве</div>
+  <h2 class="section-title">Носители</h2>
+  <div class="divider"></div>
+  <p class="body-text">Логотип и фирменный стиль в реальных носителях — меню, упаковка, полиграфия. Система работает последовательно на любом материале.</p>
+
+  <!-- Меню мокап -->
+  <div class="reveal" style="margin-top: 48px; overflow: hidden; border-radius: 8px;">
+    <img src="img_pres_logo/06-1.jpg" alt="Мокап меню SO Milano" style="width:100%; height:auto; display:block;">
+  </div>
+</section>
+
+<!-- ─── 07 КОЛЛАБОРАЦИЯ ───────────────────────────────────────────────────── -->
 
 <footer>
   <div class="footer-logo">S&middot;O Milano</div>
-  <div class="footer-meta">Айдентика &middot; 2026</div>
+  <div class="footer-meta">Айдентика &middot; Фаза 02 &middot; 2026</div>
 </footer>
 
 <script>
@@ -233,6 +397,13 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
