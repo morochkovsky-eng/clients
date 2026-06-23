@@ -6,243 +6,205 @@
 <title>SO Milano — Бренд-система</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0f0f0d;
-    --off-white: #f7f5f0;
-    --light-gray: #e8e5df;
-    --cream-dark: #ede9e1;
-    --accent: #b8894a;
-    --accent-light: #f0e8d8;
-    --text: #1a1916;
-    --text-secondary: #6b6860;
+    --dust:    #F0E8DF;
+    --ochre:   #D4B84A;
+    --chianti: #8B2635;
+    --ash:     #A89278;
+    --coal:    #3A2E28;
+    --night:   #1E1A16;
+    --surf:    #F7F5F0;
+    --border:  #E8E5DF;
+    --text2:   #6b6860;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { height: 100%; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--off-white);
-    color: var(--text);
-    min-height: 100svh;
+    font-family: 'Lato', sans-serif;
+    background: var(--dust);
+    color: var(--night);
+    -webkit-font-smoothing: antialiased;
     display: flex;
     flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    min-height: 100svh;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
-    padding: 24px 6vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--light-gray);
+    padding: 0 6vw;
+    height: 75px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--text);
+    font-size: 22px; font-weight: 300;
+    letter-spacing: 0.1em; color: var(--night);
   }
   .nav-tag {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text2);
   }
 
-  /* MAIN */
+  /* ── MAIN ── */
   main {
     flex: 1;
+    padding: 0 6vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 6vw;
+    gap: 48px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
-  /* INTRO */
-  .intro {
-    margin-bottom: 64px;
+  /* ── HEADING ── */
+  .heading-label {
+    font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--chianti);
+    margin-bottom: 16px;
   }
-  .intro-label {
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(8px);
-    animation: fadeUp 0.6s ease 0.1s forwards;
-  }
-  .intro-title {
+  .heading-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 9vw, 120px);
-    font-weight: 300;
-    line-height: 0.92;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.8s ease 0.25s forwards;
+    font-size: clamp(52px, 8vw, 120px);
+    font-weight: 300; line-height: 0.92;
+    letter-spacing: -0.02em; color: var(--night);
   }
-  .intro-title em {
-    font-style: italic;
-    color: var(--accent);
+  .heading-title em {
+    font-style: italic; color: var(--chianti);
   }
 
-  /* CARDS */
+  /* ── CARDS ── */
   .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    background: transparent;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s ease 0.5s forwards;
+    gap: 2px;
+    background: var(--border);
   }
 
   .card {
-    background: var(--off-white);
-    padding: 40px 32px;
+    background: var(--surf);
+    padding: 32px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 300px;
     text-decoration: none;
-    color: inherit;
     position: relative;
+    transition: background 0.25s ease;
     overflow: hidden;
-    transition: background 0.3s ease, border-color 0.3s ease;
-    border: 1px solid var(--light-gray);
   }
   .card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--accent);
+    background: var(--chianti);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
   }
-  .card.active:hover { background: var(--accent-light); border-color: var(--accent); }
+  .card.active:hover { background: #f2efea; }
   .card.active:hover::before { transform: scaleX(1); }
+
+  .card.pending {
+    background: var(--dust);
+    border: 1px solid var(--surf);
+    cursor: default;
+  }
 
   .card-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--accent);
-    opacity: 0.6;
-    letter-spacing: 0.1em;
-    margin-bottom: 32px;
-  }
-  .card.pending .card-num { opacity: 0.3; }
-
-  .card-body { flex: 1; }
-
-  .card-status {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 3px 10px;
+    font-size: 18px; font-weight: 300;
+    letter-spacing: 0.07em;
+    color: var(--chianti);
     margin-bottom: 16px;
-    border: 1px solid rgba(184,137,74,0.35);
-    color: var(--accent);
   }
-  .card.pending .card-status {
-    border-color: var(--light-gray);
-    color: var(--text-secondary);
+  .card.pending .card-num { opacity: 0.6; }
+
+  .card-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 21px;
+    padding: 0 10px;
+    font-size: 10px; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--chianti);
+    color: var(--chianti);
+    margin-bottom: 32px;
+    align-self: flex-start;
+  }
+  .card.pending .card-badge {
+    border-color: var(--border);
+    color: var(--text2);
     opacity: 0.6;
   }
 
   .card-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(30px, 3vw, 44px);
-    font-weight: 300;
-    line-height: 1;
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 300; line-height: 1;
     letter-spacing: -0.01em;
-    color: var(--text);
-    margin-bottom: 16px;
+    color: var(--night);
+    margin-bottom: 12px;
+    flex: 1;
   }
-  .card.pending .card-title { color: var(--text-secondary); }
+  .card.pending .card-title { color: var(--text2); }
 
   .card-desc {
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--text-secondary);
+    font-size: 13px; font-weight: 300;
+    line-height: 1.75; color: var(--text2);
+    margin-bottom: 32px;
   }
   .card.pending .card-desc { opacity: 0.6; }
 
-  .card-arrow {
-    margin-top: 40px;
+  .card-link {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    transition: gap 0.3s ease;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--chianti);
   }
-  .card.active:hover .card-arrow { gap: 16px; }
-  .card.pending .card-arrow { color: var(--light-gray); }
-
-  .card-arrow-line {
-    width: 24px;
-    height: 1px;
-    background: currentColor;
+  .card-link-line {
+    width: 24px; height: 1px;
+    background: var(--chianti);
     transition: width 0.3s ease;
   }
-  .card.active:hover .card-arrow-line { width: 36px; }
+  .card.active:hover .card-link-line { width: 36px; }
+  .card.pending .card-link {
+    color: var(--ochre);
+  }
+  .card.pending .card-link-line { background: var(--ochre); }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
-    padding: 24px 6vw;
-    border-top: 1px solid var(--light-gray);
+    height: 69px;
+    border-top: 1px solid var(--border);
+    padding: 0 6vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-shrink: 0;
   }
   .footer-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
+    font-size: 16px; font-weight: 300;
+    letter-spacing: 0.1em; color: var(--text2);
   }
   .footer-meta {
-    font-size: 11px;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-    opacity: 0.5;
+    font-size: 11px; color: var(--text2);
+    letter-spacing: 0.05em; opacity: 0.5;
   }
 
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     .cards { grid-template-columns: 1fr; }
-    .card { min-height: 260px; }
-  }
-  @media (max-width: 540px) {
-    .cards { grid-template-columns: 1fr; }
-    main { padding: 60px 5vw; }
-    nav { padding: 20px 5vw; }
-    footer { padding: 20px 5vw; }
-    .intro { margin-bottom: 48px; }
+    .heading-title { font-size: clamp(44px, 10vw, 80px); }
   }
 </style>
 </head>
@@ -254,57 +216,51 @@
 </nav>
 
 <main>
-  <div class="intro">
-    <div class="intro-label">SO Milano</div>
-    <h1 class="intro-title">Бренд-<br><em>система</em></h1>
+  <div>
+    <div class="heading-label">SO Milano</div>
+    <h1 class="heading-title">
+      Бренд-<em>система</em><br>
+      <em>SO Restaurant &amp; Smoke Lounge</em>
+    </h1>
   </div>
 
   <div class="cards">
 
+    <!-- Стратегия -->
     <a class="card active" href="strategy.html">
-      <div>
-        <div class="card-num">01</div>
-        <div class="card-status">В работе</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Стратегия</div>
-        <div class="card-desc">Бренд-платформа + прикладные выводы.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
+      <div class="card-num">01</div>
+      <div class="card-badge">В работе</div>
+      <div class="card-title">Стратегия</div>
+      <div class="card-desc">Бренд-платформа + прикладные выводы.</div>
+      <div class="card-link">
+        <div class="card-link-line"></div>
         Открыть
       </div>
     </a>
 
+    <!-- Айдентика -->
     <a class="card active" href="identity.html">
-      <div>
-        <div class="card-num">02</div>
-        <div class="card-status">В работе</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Айдентика</div>
-        <div class="card-desc">Визуальная концепция + логотип + цвет + типографика.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
+      <div class="card-num">02</div>
+      <div class="card-badge">В работе</div>
+      <div class="card-title">Айдентика</div>
+      <div class="card-desc">Визуальная концепция + логотип + цвет + типографика.</div>
+      <div class="card-link">
+        <div class="card-link-line"></div>
         Открыть
       </div>
     </a>
 
-    <a class="card pending" href="application.html">
-      <div>
-        <div class="card-num">03</div>
-        <div class="card-status">Планируется</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Применение</div>
-        <div class="card-desc">Меню, соцсети, сайт, шаблоны, базовые носители.</div>
-      </div>
-      <div class="card-arrow">
-        <div class="card-arrow-line"></div>
+    <!-- Применение -->
+    <div class="card pending">
+      <div class="card-num">03</div>
+      <div class="card-badge">Планируется</div>
+      <div class="card-title">Применение</div>
+      <div class="card-desc">Меню, соцсети, сайт, шаблоны, базовые носители.</div>
+      <div class="card-link">
+        <div class="card-link-line"></div>
         Скоро
       </div>
-    </a>
+    </div>
 
   </div>
 </main>
