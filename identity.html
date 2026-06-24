@@ -34,9 +34,9 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 6vw; height: 64px;
+    background: var(--chianti);
     transition: background 0.4s;
   }
-  nav.scrolled { background: rgba(139,38,53,0.96); backdrop-filter: blur(12px); }
   .nav-back {
     display: flex; align-items: center; gap: 10px;
     text-decoration: none; opacity: 0.5; transition: opacity 0.3s;
@@ -46,6 +46,7 @@
   .nav-logo {
     font-family: 'Cormorant Garamond', serif; font-size: 20px;
     font-weight: 300; letter-spacing: 0.1em; color: var(--dust);
+    position: absolute; left: 50%; transform: translateX(-50%);
   }
   .nav-tag { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(240,232,223,0.4); }
 
@@ -76,8 +77,8 @@
   }
   .hero-title em { font-style: italic; color: var(--ochre); }
   .hero-sub {
-    margin-top: 28px; font-size: 14px; font-weight: 300;
-    color: rgba(240,232,223,0.7); max-width: 480px; line-height: 1.7;
+    margin-top: 28px; font-size: 19px; font-weight: 300;
+    color: rgba(240,232,223,0.7); max-width: 480px; line-height: 1.5;
     position: relative;
     opacity: 0; transform: translateY(10px); animation: up 0.7s ease 0.9s forwards;
   }
@@ -105,7 +106,7 @@
   .divider-ochre   { width: 44px; height: 1px; background: rgba(212,184,74,0.4); margin-bottom: 44px; }
 
   .body-text {
-    font-size: 15px; font-weight: 300; line-height: 1.8;
+    font-size: 19px; font-weight: 300; line-height: 1.5;
     color: var(--coal); max-width: 620px; margin-bottom: 20px;
   }
   .section-night .body-text { color: var(--dust); }
@@ -174,14 +175,15 @@
 
   /* ── FOOTER ── */
   footer {
-    background: var(--night); height: 105px; padding: 0 6vw;
-    display: flex; justify-content: space-between; align-items: center;
+    background: var(--dust); height: 105px; padding: 0 6vw;
+    display: flex; align-items: center;
+    border-top: 1px solid rgba(30,26,22,0.1);
   }
   .footer-logo {
-    font-family: 'Cormorant Garamond', serif; font-size: 20px;
-    font-weight: 300; letter-spacing: 0.1em; color: rgba(240,232,223,0.3);
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(30,26,22,0.4);
   }
-  .footer-meta { font-size: 12px; color: rgba(240,232,223,0.18); letter-spacing: 0.05em; }
 
   @keyframes up { to { opacity: 1; transform: translateY(0); } }
 
@@ -372,8 +374,7 @@
 </section>
 
 <footer>
-  <div class="footer-logo" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;letter-spacing:0.05em;color:var(--dust);opacity:1;">SO Restaurant &amp; Smoke Lounge</div>
-  
+  <div class="footer-logo">2026 &nbsp;Бренд-платформа</div>
 </footer>
 
 <script>

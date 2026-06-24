@@ -33,10 +33,10 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0 6vw; height: 66px;
+    padding: 0 6vw; height: 64px;
+    background: var(--ochre);
     transition: background 0.4s;
   }
-  nav.scrolled { background: rgba(30,26,22,0.95); backdrop-filter: blur(12px); }
   .nav-back {
     display: flex; align-items: center; gap: 10px;
     text-decoration: none; opacity: 0.5; transition: opacity 0.3s;
@@ -44,15 +44,16 @@
   .nav-back:hover { opacity: 1; }
   .nav-back span {
     font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(247,245,240,0.8);
+    color: var(--night);
   }
   .nav-logo {
-    font-family: 'Cormorant Garamond', serif; font-size: 22px;
-    font-weight: 300; letter-spacing: 0.1em; color: var(--surf);
+    font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    font-weight: 300; letter-spacing: 0.1em; color: var(--night);
+    position: absolute; left: 50%; transform: translateX(-50%);
   }
   .nav-tag {
     font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(247,245,240,0.4);
+    color: rgba(30,26,22,0.4);
   }
 
   /* ── HERO ── */
@@ -121,7 +122,7 @@
   .divider-ash { width: 48px; height: 1px; background: var(--ash); margin-bottom: 44px; }
 
   .body-text {
-    font-size: 17px; font-weight: 300; line-height: 1.75;
+    font-size: 19px; font-weight: 300; line-height: 1.5;
     color: var(--text2); max-width: 620px; margin-bottom: 20px;
   }
   .body-text-coal { color: var(--coal); }
@@ -154,12 +155,12 @@
     font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--night); margin-bottom: 12px;
   }
-  .grid-cell-text { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text2); }
+  .grid-cell-text { font-size: 16px; font-weight: 300; line-height: 1.5; color: var(--text2); }
 
   /* ── PULL QUOTE ── */
   .pull-quote {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(22px, 3.5vw, 42px); font-weight: 300; font-style: italic;
+    font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; font-style: italic;
     line-height: 1.3; color: var(--night); max-width: 800px; margin-bottom: 48px;
   }
   .pull-quote em { font-style: normal; color: var(--chianti); }
@@ -299,11 +300,11 @@
   .visual-list { margin-top: 48px; border-top: 1px solid rgba(30,26,22,0.1); }
   .visual-item {
     display: grid; grid-template-columns: 52px 1fr;
-    gap: 32px; align-items: start;
+    gap: 0; align-items: start;
     padding: 28px 20px; border-bottom: 1px solid rgba(30,26,22,0.1);
     background: var(--surf);
   }
-  .visual-arrow { font-size: 14px; color: var(--ash); opacity: 0.6; padding-top: 6px; }
+  .visual-arrow { font-size: 22px; color: var(--ash); opacity: 0.6; padding-top: 6px; }
   .visual-title {
     font-family: 'Cormorant Garamond', serif; font-size: 32px;
     font-weight: 400; color: var(--night); margin-bottom: 10px; line-height: 1.2;
@@ -321,8 +322,8 @@
     opacity: 0.7;
   }
   .brand-essence-text {
-    font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 36px);
-    font-weight: 300; font-style: italic; color: var(--dust); line-height: 1.3;
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 2.8vw, 42px);
+    font-weight: 300; font-style: italic; color: var(--dust); line-height: 1.2;
   }
 
   /* ── USAGE LIST ── */
@@ -340,14 +341,15 @@
 
   /* ── FOOTER ── */
   footer {
-    background: var(--coal); padding: 0 6vw;
-    height: 105px; display: flex; justify-content: space-between; align-items: center;
+    background: var(--dust); padding: 0 6vw;
+    height: 105px; display: flex; align-items: center;
+    border-top: 1px solid rgba(30,26,22,0.1);
   }
   .footer-logo {
-    font-family: 'Cormorant Garamond', serif; font-size: 20px;
-    font-weight: 300; letter-spacing: 0.1em; color: var(--dust); opacity: 0.6;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(30,26,22,0.4);
   }
-  .footer-meta { font-size: 12px; color: rgba(240,232,223,0.35); letter-spacing: 0.05em; }
 
   @keyframes up { to { opacity: 1; transform: translateY(0); } }
 
@@ -365,12 +367,12 @@
 <nav id="nav">
   <a class="nav-back" href="index.html">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <polyline points="10,2 4,8 10,14" stroke="rgba(247,245,240,0.8)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="10,2 4,8 10,14" stroke="rgba(30,26,22,0.6)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <span>Все фазы</span>
   </a>
   <div class="nav-logo">SO</div>
-  <div class="nav-tag">Бренд-платформа</div>
+  <div class="nav-tag">Стратегия</div>
 </nav>
 
 <!-- HERO -->
@@ -729,8 +731,7 @@
 </section>
 
 <footer>
-  <div class="footer-logo" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;letter-spacing:0.05em;color:var(--dust);opacity:1;">SO Restaurant &amp; Smoke Lounge</div>
-  
+  <div class="footer-logo">2026 &nbsp;Бренд-платформа</div>
 </footer>
 
 <script>
